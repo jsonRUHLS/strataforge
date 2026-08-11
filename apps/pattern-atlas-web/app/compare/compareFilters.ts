@@ -23,7 +23,7 @@ export function filterPatternContentByRuntime(
 
   const languageExamples = Object.values(pattern.scenarioExamples ?? {})
     .flatMap((examplesByLanguage) => Object.values(examplesByLanguage ?? {}))
-    .filter((example): example is PatternLanguageExample => Boolean(example))
+    .filter((example): example is NonNullable<typeof example> => example != null)
     .filter((example) => matches(example.runtime));
 
   return {
