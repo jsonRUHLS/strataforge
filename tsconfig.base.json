@@ -20,7 +20,7 @@
     "allowJs": false,
     "checkJs": false,
     "noEmit": true,
-    "ignoreDeprecations": "6.0",
+    "ignoreDeprecations": "5.0",
     "baseUrl": ".",
     "paths": {
       "@atlas-patterns/content": ["packages/content/src/index.ts"],

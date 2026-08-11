@@ -69,6 +69,16 @@ export const patternLanguageSchema = z.enum([
 ]);
 export type PatternLanguage = z.infer<typeof patternLanguageSchema>;
 
+export const PatternLayerSchema = z.enum([
+  "presentation",
+  "application",
+  "domain",
+  "data",
+  "integration",
+  "infrastructure",
+]);
+export type PatternLayer = z.infer<typeof PatternLayerSchema>;
+
 export const patternVariantLanguageSchema = z.enum([
   "typescript",
   "javascript",
@@ -171,6 +181,7 @@ export interface PatternVariant {
   title: string;
   stackArea: PatternStackArea;
   language: PatternVariantLanguage;
+  layer?: PatternLayer;
   summary: string;
   intent?: string;
   problem?: string;
@@ -211,6 +222,7 @@ export const patternVariantSchema = z.object({
   title: z.string(),
   stackArea: patternStackAreaSchema,
   language: patternVariantLanguageSchema,
+  layer: PatternLayerSchema.optional(),
   summary: z.string(),
   intent: z.string().optional(),
   problem: z.string().optional(),
