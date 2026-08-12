@@ -1,17 +1,12 @@
-# Pattern Atlas
+# StrataForge
 
-Pattern Atlas is a pnpm workspace project with a Next.js web application and shared packages.
+StrataForge is an architecture intelligence and full-stack blueprint platform for exploring software patterns, comparing technology choices, and designing implementation-ready solutions.
 
-## Structure
+## Product vision
 
--  - Next.js web application
--  - shared UI components
--  - structured content and records
--  - shared types and validation
--  - stack and integration helpers
-- `docs/` - architecture notes, ADRs, journal entries, and Medium drafts
+StrataForge helps developers and technical teams:
 
-## Development
-
-pnpm install
-pnpm dev
+- Explore architecture patterns, languages, frameworks, and platforms.
+- Compare technologies within a real implementation context.
+- Build compatible full-stack solution blueprints.
+- Generate validated, AI-assisted architecture and implementation plans.
