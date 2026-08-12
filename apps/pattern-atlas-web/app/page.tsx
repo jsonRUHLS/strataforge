@@ -20,7 +20,7 @@ export default function HomePage() {
       <PageHeader
         eyebrow="Software Design Patterns"
         title="Build the same solution across any stack."
-        description="Pattern Atlas is the working surface for exploring how software design patterns translate across languages, frameworks, and platforms without losing their architectural intent."
+        description="StrataForge is the working surface for exploring how software design patterns translate across languages, frameworks, and platforms without losing their architectural intent."
       />
 
       <div className="hero-actions">

@@ -1,6 +1,6 @@
 # Architecture Overview
 
-Pattern Atlas is organized as a pnpm workspace with one primary web application and shared packages.
+StrataForge is organized as a pnpm workspace with one primary web application and shared packages.
 
 ## Main parts
 

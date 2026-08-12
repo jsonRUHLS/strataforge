@@ -4,11 +4,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Pattern Atlas",
-    template: "%s | Pattern Atlas",
+    default: "StrataForge",
+    template: "%s | StrataForge",
   },
   description:
-    "A cross-language software design pattern atlas for comparing architecture, implementation, and integration approaches.",
+    "Explore software architecture patterns, compare technology choices, and build implementation-ready solution blueprints.",
 };
 
 const navItems = [
@@ -31,7 +31,7 @@ export default function RootLayout({
             <div className="brand-block">
               <p className="eyebrow">RuhlinIT Digital</p>
               <Link href="/" className="brand-link">
-                Pattern Atlas
+                StrataForge
               </Link>
               <p className="brand-copy">
                 Compare software design patterns across languages, stacks, and
