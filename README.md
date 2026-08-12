@@ -10,3 +10,17 @@ StrataForge helps developers and technical teams:
 - Compare technologies within a real implementation context.
 - Build compatible full-stack solution blueprints.
 - Generate validated, AI-assisted architecture and implementation plans.
+
+## Development
+
+```bash
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+## Quality checks
+
+```bash
+pnpm lint
+pnpm build
+```
