@@ -12,6 +12,8 @@ coverage
 
 .env
 .env.*
+.env.local
+.env.*.local
 !.env.example
 
 .DS_Store
