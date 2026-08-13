@@ -22,3 +22,11 @@ coverage
 pnpm-debug.log*
 *.tsbuildinfo
 **/*.tsbuildinfo
+
+# Personal Obsidian working notes
+notes/
+
+# Personal Obsidian state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
