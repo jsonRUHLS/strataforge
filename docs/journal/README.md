@@ -270,10 +270,17 @@ in a modern TypeScript monorepo.
 ## Suggested first entries
 
 ```text
+[Journal: Establishing the StrataForge foundation](journal-2026-08-13-establishing-strataforge-foundation.md)
 journal-2026-08-11-establishing-strataforge-repository-and-ci.md
 journal-2026-08-12-rebranding-pattern-atlas-as-strataforge.md
 journal-2026-08-12-documenting-the-strataforge-architecture.md
 journal-2026-08-13-establishing-publication-and-journal-workflows.md
+```
+
+## Live Journal Entries
+
+```
+[Journal: Establishing the StrataForge foundation](journal-2026-08-13-establishing-strataforge-foundation.md)
 ```
 
 ## Related documents
