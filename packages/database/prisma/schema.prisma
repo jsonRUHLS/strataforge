@@ -1,0 +1,163 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TechnologyKind {
+  LANGUAGE
+  FRAMEWORK
+  LIBRARY
+  DATABASE
+  MESSAGE_BROKER
+  STREAM_PROCESSOR
+  CLOUD_SERVICE
+  OBSERVABILITY_TOOL
+  RUNTIME
+  TOOL
+}
+
+enum CatalogStatus {
+  ACTIVE
+  LEGACY
+  EMERGING
+  DRAFT
+  ARCHIVED
+}
+
+enum CompatibilityStatus {
+  RECOMMENDED
+  SUPPORTED
+  SUPPORTED_WITH_ADAPTER
+  CAVEAT
+  NOT_RECOMMENDED
+  INCOMPATIBLE
+}
+
+model CoreLanguage {
+  id           String       @id @default(uuid())
+  slug         String       @unique
+  name         String
+  ecosystem    String?
+  status       CatalogStatus @default(ACTIVE)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  technologies Technology[]
+  variants     PatternVariant[]
+
+  @@map("core_languages")
+}
+
+model Technology {
+  id               String          @id @default(uuid())
+  slug             String          @unique
+  name             String
+  kind             TechnologyKind
+  summary          String
+  status           CatalogStatus   @default(ACTIVE)
+  coreLanguageId   String?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  coreLanguage     CoreLanguage?   @relation(fields: [coreLanguageId], references: [id])
+  scenarioLinks    ScenarioTechnology[]
+  compatibilityFrom TechnologyCompatibility[] @relation("compatibility_source")
+  compatibilityTo   TechnologyCompatibility[] @relation("compatibility_target")
+
+  @@map("technologies")
+}
+
+model Pattern {
+  id           String        @id @default(uuid())
+  slug         String        @unique
+  name         String
+  summary      String
+  category     String
+  layer        String?
+  status       CatalogStatus @default(ACTIVE)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  variants     PatternVariant[]
+  scenarioLinks ScenarioPattern[]
+
+  @@map("patterns")
+}
+
+model PatternVariant {
+  id             String        @id @default(uuid())
+  slug           String        @unique
+  patternId      String
+  coreLanguageId String?
+  technologyId   String?
+  title          String
+  summary        String?
+  layer          String?
+  code           String
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  pattern        Pattern       @relation(fields: [patternId], references: [id])
+  coreLanguage   CoreLanguage? @relation(fields: [coreLanguageId], references: [id])
+
+  @@map("pattern_variants")
+}
+
+model Scenario {
+  id           String        @id @default(uuid())
+  slug         String        @unique
+  name         String
+  summary      String
+  problemStatement String
+  status       CatalogStatus @default(ACTIVE)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  patternLinks ScenarioPattern[]
+  technologyLinks ScenarioTechnology[]
+
+  @@map("scenarios")
+}
+
+model ScenarioPattern {
+  scenarioId String
+  patternId  String
+
+  scenario   Scenario @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+  pattern    Pattern  @relation(fields: [patternId], references: [id], onDelete: Cascade)
+
+  @@id([scenarioId, patternId])
+  @@map("scenario_patterns")
+}
+
+model ScenarioTechnology {
+  scenarioId   String
+  technologyId String
+
+  scenario     Scenario   @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+  technology   Technology @relation(fields: [technologyId], references: [id], onDelete: Cascade)
+
+  @@id([scenarioId, technologyId])
+  @@map("scenario_technologies")
+}
+
+model TechnologyCompatibility {
+  id                 String              @id @default(uuid())
+  sourceTechnologyId String
+  targetTechnologyId String
+  status             CompatibilityStatus
+  rationale          String
+  requiredAdapter    String?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+
+  sourceTechnology   Technology @relation("compatibility_source", fields: [sourceTechnologyId], references: [id], onDelete: Cascade)
+  targetTechnology   Technology @relation("compatibility_target", fields: [targetTechnologyId], references: [id], onDelete: Cascade)
+
+  @@unique([sourceTechnologyId, targetTechnologyId])
+  @@map("technology_compatibilities")
+}
