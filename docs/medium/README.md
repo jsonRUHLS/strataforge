@@ -171,15 +171,37 @@ Event Driven Architecture
 
 ## File naming
 
-Use lowercase kebab-case filenames:
+Medium article files use this convention:
 
 ```text
-introducing-strataforge.md
-architecture-decisions-need-context.md
-why-software-patterns-need-real-examples.md
-building-an-event-driven-architecture-intelligence-platform.md
-from-pattern-catalog-to-solution-blueprint.md
+md-####-short-descriptive-title.md
 ```
+
+Where:
+
+```text
+md
+  Identifies the document as a Medium article.
+
+####
+  A four-digit sequential article number.
+
+short-descriptive-title
+  A lowercase kebab-case summary of the article topic.
+```
+
+Examples:
+
+```text
+md-0001-introducing-strataforge.md
+md-0002-from-pattern-catalog-to-architecture-blueprint.md
+md-0003-why-technology-comparisons-need-context.md
+md-0004-building-an-event-driven-architecture-intelligence-platform.md
+```
+
+Do not reuse article numbers, including for unpublished, archived, or removed articles.
+
+The filename identifies the article in the repository. The Medium publication title remains defined in the article frontmatter.
 
 ## Publishing checklist
 
@@ -201,10 +223,10 @@ Before publishing:
 
 ## First article
 
-Start with:
+The first StrataForge article is:
 
 ```text
-introducing-strataforge.md
+md-0001-introducing-strataforge.md
 ```
 
-This article explains the product’s origin, problem space, current application foundation, future product modes, and target architectural direction.
+It introduces the product vision, the gap between pattern catalogs and real architecture decisions, the planned product modes, and the target platform direction.
