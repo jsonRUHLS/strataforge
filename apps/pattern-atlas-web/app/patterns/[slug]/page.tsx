@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
-import {
-  getPatternBySlug as getContentPatternBySlug,
-} from "@atlas-patterns/content";
+import { getPatternBySlug as getContentPatternBySlug } from "@atlas-patterns/content";
 import { getOptionalPatternBySlug as getCatalogPatternBySlug } from "@atlas-patterns/database";
 import { PageHeader, SectionCard, Tag } from "@atlas-patterns/ui";
 
@@ -68,9 +67,7 @@ export default async function PatternDetailPage({
    * and query the database for every pattern.
    */
   const catalogPattern =
-  slug === "adapter"
-    ? await getCatalogPatternBySlug(slug)
-    : null;
+    slug === "adapter" ? await getCatalogPatternBySlug(slug) : null;
 
   /*
    * Convert Prisma data into a small, UI-safe shape.
@@ -177,7 +174,12 @@ export default async function PatternDetailPage({
                 {catalogScenarios.map((scenario) => (
                   <li key={scenario.id}>
                     <div className="panel-meta">
-                      <strong>{scenario.name}</strong>
+                      <Link
+                        className="font-semibold text-cyan-300 transition hover:text-cyan-200 hover:underline"
+                        href={`/scenarios/${scenario.slug}`}
+                      >
+                        {scenario.name}
+                      </Link>
 
                       {scenario.source === "database" ? (
                         <Tag>Catalog DB</Tag>
@@ -185,6 +187,13 @@ export default async function PatternDetailPage({
                     </div>
 
                     <p>{scenario.summary}</p>
+
+                    <Link
+                      className="mt-3 inline-flex text-sm font-medium text-cyan-300 transition hover:text-cyan-200 hover:underline"
+                      href={`/scenarios/${scenario.slug}`}
+                    >
+                      View scenario →
+                    </Link>
                   </li>
                 ))}
               </ul>
