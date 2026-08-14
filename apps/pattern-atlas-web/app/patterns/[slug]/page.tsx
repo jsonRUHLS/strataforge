@@ -3,9 +3,8 @@ import { notFound } from "next/navigation";
 
 import {
   getPatternBySlug as getContentPatternBySlug,
-  patterns,
 } from "@atlas-patterns/content";
-import { getPatternBySlug as getCatalogPatternBySlug } from "@atlas-patterns/database";
+import { getOptionalPatternBySlug as getCatalogPatternBySlug } from "@atlas-patterns/database";
 import { PageHeader, SectionCard, Tag } from "@atlas-patterns/ui";
 
 import { PatternExamplesTabs } from "./PatternExamplesTabs";
@@ -69,9 +68,9 @@ export default async function PatternDetailPage({
    * and query the database for every pattern.
    */
   const catalogPattern =
-    slug === "adapter"
-      ? await getCatalogPatternBySlug(slug)
-      : null;
+  slug === "adapter"
+    ? await getCatalogPatternBySlug(slug)
+    : null;
 
   /*
    * Convert Prisma data into a small, UI-safe shape.
