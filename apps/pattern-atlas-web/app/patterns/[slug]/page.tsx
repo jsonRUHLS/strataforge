@@ -11,6 +11,8 @@ import { PageHeader, SectionCard, Tag } from "@atlas-patterns/ui";
 import { PatternExamplesTabs } from "./PatternExamplesTabs";
 import { PatternVariantsSection } from "@components/patterns/PatternVariantsSection";
 
+export const dynamic = "force-dynamic";
+
 type PatternDetailPageProps = {
   params: Promise<{
     slug: string;
@@ -24,12 +26,6 @@ type ScenarioViewModel = {
   summary: string;
   source: "database" | "content";
 };
-
-export async function generateStaticParams() {
-  return patterns.map((pattern) => ({
-    slug: pattern.slug,
-  }));
-}
 
 export async function generateMetadata({
   params,
