@@ -14,7 +14,8 @@
     ".next/types/**/*.ts",
         "../../packages/content/src/**/*.ts",
     "../../packages/schemas/src/**/*.ts",
-    "../../packages/ui/src/**/*.ts"
+    "../../packages/ui/src/**/*.ts",
+    "../../packages/database/src/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

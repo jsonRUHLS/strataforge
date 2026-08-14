@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@atlas-patterns/content": "workspace:*",
+    "@atlas-patterns/database": "workspace:^",
     "@atlas-patterns/schemas": "workspace:*",
     "@atlas-patterns/ui": "workspace:*",
     "next": "16.2.12",
