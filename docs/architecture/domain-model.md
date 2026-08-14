@@ -1,7 +1,7 @@
 # Domain Model
 
 > Status: Proposed  
-> Last updated: 2026-08-12
+> Last updated: 2026-08-14
 
 This document defines the core business concepts and relationships used throughout StrataForge.
 
@@ -179,6 +179,27 @@ Multi-tenant SaaS application
 ```
 
 A scenario may reference many patterns, technologies, examples, and curated blueprints.
+
+### Scenario browsing relationship
+
+A catalog scenario is an applied use case connected to one or more patterns and technologies.
+
+```text
+Scenario
+├── ScenarioPatternLink → Pattern
+│   └── PatternVariant → coreLanguage (Technology)
+└── ScenarioTechnologyLink → Technology
+```
+
+The initial seeded scenario is `third-party-task-api`. It is linked to the Adapter pattern and its associated technology records.
+
+The application exposes this graph through:
+
+```text
+/scenarios/[slug]
+```
+
+The scenario detail route loads the scenario and its catalog relationships server-side. The Adapter pattern detail route also loads catalog scenario links and provides navigation to each linked scenario detail page.
 
 ### Core language
 
