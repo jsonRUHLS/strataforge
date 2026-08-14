@@ -1,7 +1,7 @@
 # StrataForge Roadmap
 
 > Status: In progress  
-> Last updated: 2026-08-13
+> Last updated: 2026-08-14
 
 This roadmap describes the planned evolution of StrataForge from a curated pattern-exploration application into an architecture intelligence and full-stack blueprint platform.
 
@@ -62,6 +62,13 @@ Roadmap work should follow these principles:
 - Architecture overview, system context, application architecture,
   domain model, data platform, and eventing documentation.
 - Initial architecture decision records.
+- Local PostgreSQL Docker Compose configuration.
+- @atlas-patterns/database workspace package.
+- Prisma schema, initial PostgreSQL catalog migration, and generated-client build workflow.
+- Idempotent seed data for the first catalog slice.
+- Server-side pattern and scenario catalog repository queries.
+- Optional Adapter catalog enrichment on /patterns/adapter.
+- Authored-content fallback when PostgreSQL is unavailable or DATABASE_URL is absent.
 ```
 
 ### Current state
@@ -70,15 +77,17 @@ Roadmap work should follow these principles:
 - Next.js web application.
 - pnpm monorepo.
 - Curated pattern and implementation-example content.
-- Shared schemas, UI, content, and integration packages.
+- Shared schemas, UI, content, integration, and database packages.
 - GitHub Actions quality checks.
-- No PostgreSQL, MongoDB, Kafka, ClickHouse, Grafana,
-  graph store, or event worker implementation yet.
+- Local PostgreSQL catalog foundation.
+- Initial Adapter, TypeScript, technology, and third-party task API scenario seed data.
+- MongoDB, Kafka, ClickHouse, Grafana, graph store,
+  transactional outbox, and event worker remain unimplemented.
 ```
 
 ## Phase 0: Documentation and product foundation
 
-> Status: In progress
+> Status: Complete
 
 ### Goal
 
@@ -108,61 +117,81 @@ Establish a shared product story, documentation system, architecture boundaries,
 
 ## Phase 1: Relational catalog foundation
 
-> Status: Planned
+> Status: Initial vertical slice complete
 
 ### Goal
 
 Introduce PostgreSQL as the canonical transactional store for the StrataForge catalog and begin migrating curated metadata from source-only content into structured records.
 
-### Scope
+### Completed scope
 
 ```text
 - Create packages/database.
-- Select and configure migration tooling.
+- Configure Prisma migrations and generated client workflow.
 - Add PostgreSQL local-development configuration.
 - Define initial relational schema.
-- Add database migrations.
-- Add seed/import process for curated content.
+- Add the initial catalog migration.
+- Add idempotent seed data for an initial curated catalog slice.
 - Add repository and query interfaces.
-- Add database-backed catalog read paths.
+- Add an optional database-backed catalog read path.
 - Preserve source-controlled content as the authored source.
+- Preserve content-backed rendering when PostgreSQL is unavailable.
 ```
 
-### Initial catalog entities
+### Implemented catalog entities
 
 ```text
 CoreLanguage
 Technology
-Platform
 Pattern
 PatternVariant
 Scenario
-CodeExample metadata
+ScenarioPattern
+ScenarioTechnology
 TechnologyCompatibility
-CompatibilityCaveat
-RequiredAdapter
 ```
 
-### First vertical slice
+### Implemented vertical slice
 
 ```text
 Adapter pattern
 → Third-party task API scenario
-→ TypeScript
-→ Apollo Client and TypeORM examples
+→ TypeScript implementation
+→ Apollo Client
+→ TypeORM
+→ PostgreSQL
+→ Apache Kafka
+→ ClickHouse
+→ Grafana
 → PostgreSQL-backed catalog query
-→ Existing Browse experience
+→ Catalog DB provenance tag
+→ Existing pattern-detail experience
 ```
 
-### Exit criteria
+### Exit criteria reached
 
 ```text
-- PostgreSQL migrations run locally.
-- Curated catalog metadata is seeded or imported.
-- The Adapter scenario is rendered from a database-backed query.
-- Existing Browse behavior remains functional.
-- Database code is isolated from route and UI components.
-- CI validates the new package and build.
+- [x] PostgreSQL migrations run locally.
+- [x] Curated catalog metadata is seeded.
+- [x] The Adapter scenario is available through a database-backed query.
+- [x] Existing pattern-detail behavior remains functional.
+- [x] Database code is isolated from route and UI components.
+- [x] CI validates the database package and production build.
+```
+
+### Remaining catalog hardening
+
+```text
+- [ ] Add PostgreSQL service infrastructure to CI.
+- [ ] Run migration, seed, and repository-query smoke tests in CI.
+- [ ] Add automated tests for missing DATABASE_URL fallback behavior.
+- [ ] Add automated tests for unavailable PostgreSQL fallback behavior.
+- [ ] Seed compatibility relationships and caveats.
+- [ ] Add Platform and CodeExample metadata when their product use cases require them.
+- [ ] Build a repeatable import workflow from curated source content.
+- [ ] Migrate additional patterns, variants, scenarios, and technologies.
+- [ ] Add database-backed scenario detail routes.
+- [ ] Expand database-backed Explore and Browse read paths.
 ```
 
 ## Phase 2: Contextual Compare foundation

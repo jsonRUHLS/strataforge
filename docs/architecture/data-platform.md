@@ -1,13 +1,13 @@
 # Data Platform
 
-> Status: Proposed  
-> Last updated: 2026-08-12
+> Status: In progress  
+> Last updated: 2026-08-14
 
-This document defines the target data platform for StrataForge.
+This document defines the target data platform for StrataForge and records its current implementation status.
 
-StrataForge will use a polyglot data architecture: different systems are selected for the workloads they are best suited to handle. PostgreSQL will hold canonical transactional state; MongoDB will store flexible document artifacts; Kafka will transport durable domain events; ClickHouse will support analytics; Grafana will provide visibility; and a graph store will support derived relationship traversal and recommendation explanations.
+StrataForge will use a polyglot data architecture: different systems are selected for the workloads they are best suited to handle. PostgreSQL holds canonical transactional state; MongoDB will store flexible document artifacts; Kafka will transport durable domain events; ClickHouse will support analytics; Grafana will provide visibility; and a graph store will support derived relationship traversal and recommendation explanations.
 
-This is a target architecture. It does not represent the full current implementation.
+PostgreSQL catalog infrastructure is now implemented locally as the first delivery phase. MongoDB, Kafka, ClickHouse, Grafana, graph projections, transactional outbox processing, and real-time event delivery remain proposed.
 
 For domain concepts, see [Domain model](domain-model.md). For event contracts and delivery rules, see [Eventing model](eventing.md).
 
@@ -119,43 +119,172 @@ Do not emit:
                              └───────────────┘
 ```
 
+## Current implementation
+
+### PostgreSQL catalog foundation
+
+> Status: Implemented locally
+
+The first StrataForge PostgreSQL catalog foundation is implemented in:
+
+```text
+packages/database
+```
+
+Local PostgreSQL development infrastructure is available through:
+
+```text
+infra/compose/docker-compose.postgres.yml
+```
+
+The database package owns:
+
+- Prisma schema definitions.
+- Prisma migrations.
+- Prisma Client construction.
+- Catalog repository queries.
+- Idempotent seed data.
+- PostgreSQL catalog build output and type declarations.
+
+The initial implemented catalog schema includes:
+
+```text
+CoreLanguage
+Technology
+Pattern
+PatternVariant
+Scenario
+ScenarioPattern
+ScenarioTechnology
+TechnologyCompatibility
+```
+
+The initial seed contains:
+
+```text
+TypeScript
+Adapter
+Adapter in TypeScript
+Third-party task API integration
+Apollo Client
+TypeORM
+PostgreSQL
+Apache Kafka
+ClickHouse
+Grafana
+```
+
+The first application integration is:
+
+```text
+/patterns/adapter
+```
+
+When PostgreSQL is configured, reachable, migrated, and seeded, the Adapter pattern page includes a database-backed catalog record and the linked `third-party-task-api` scenario. The scenario is marked with the `Catalog DB` provenance tag.
+
+The existing `@atlas-patterns/content` package remains the primary source for the current pattern-detail experience. Catalog data is additive while broader pattern metadata, examples, and variants are migrated incrementally.
+
+### Catalog availability behavior
+
+The initial catalog integration fails open.
+
+```text
+DATABASE_URL absent
+→ render authored content only
+
+PostgreSQL unavailable or unable to initialize
+→ render authored content only
+→ write a server-side warning
+
+PostgreSQL available and catalog data present
+→ render authored content plus catalog enrichment
+```
+
+This prevents the optional catalog infrastructure from making existing content pages unavailable during local development, CI, preview deployment, or early deployment environments.
+
+### Not yet implemented
+
+The following remain proposed:
+
+```text
+Transactional outbox records and publisher
+Kafka topics, producers, consumers, and dead-letter handling
+MongoDB document storage and change-stream integration
+ClickHouse ingestion and analytics tables
+Grafana dashboards and alerts
+Graph projections and traversal queries
+Server-Sent Event or WebSocket delivery
+Users, organizations, projects, saved comparisons, and blueprints
+```
+
 ## Data ownership
 
-| Data category | Authoritative owner | Derived consumers |
-|---|---|---|
-| Patterns, scenarios, technologies, platforms | PostgreSQL | Kafka, ClickHouse, graph store |
-| Compatibility relationships and caveats | PostgreSQL | Kafka, ClickHouse, graph store |
-| Users, organizations, projects | PostgreSQL | Kafka, ClickHouse |
-| Saved comparisons | PostgreSQL | Kafka, ClickHouse |
-| Blueprint state and Composer selections | PostgreSQL | MongoDB, Kafka, graph store, ClickHouse |
-| Transactional outbox records | PostgreSQL | Kafka publisher |
-| AI generation documents and artifacts | MongoDB | Kafka, ClickHouse |
-| Event transport and replay | Kafka | Workers and projections |
-| Product and operational analytics | ClickHouse | Grafana |
-| Relationship traversal | Graph store | Application query layer |
+| Data category | Authoritative owner | Implementation status | Derived consumers |
+|---|---|---|---|
+| Patterns, scenarios, technologies, platforms | PostgreSQL | Initial catalog implemented locally | Kafka, ClickHouse, graph store |
+| Compatibility relationships and caveats | PostgreSQL | Technology compatibility schema implemented; no current seeded compatibility records | Kafka, ClickHouse, graph store |
+| Users, organizations, projects | PostgreSQL | Proposed | Kafka, ClickHouse |
+| Saved comparisons | PostgreSQL | Proposed | Kafka, ClickHouse |
+| Blueprint state and Composer selections | PostgreSQL | Proposed | MongoDB, Kafka, graph store, ClickHouse |
+| Transactional outbox records | PostgreSQL | Proposed | Kafka publisher |
+| AI generation documents and artifacts | MongoDB | Proposed | Kafka, ClickHouse |
+| Event transport and replay | Kafka | Proposed | Workers and projections |
+| Product and operational analytics | ClickHouse | Proposed | Grafana |
+| Relationship traversal | Graph store | Proposed | Application query layer |
 
 ## PostgreSQL
 
-> Status: Proposed
+> Status: Initial catalog foundation implemented locally
 
 PostgreSQL is the canonical transactional database.
 
-It should own structured domain records that require transactions, constraints, foreign-key relationships, user ownership, authorization checks, and durable lifecycle management.
+It owns structured domain records that require transactions, constraints, foreign-key relationships, user ownership, authorization checks, and durable lifecycle management.
 
-### Initial PostgreSQL domains
+### Implemented PostgreSQL domains
 
 ```text
 Core language
 Technology
-Platform
 Pattern
 Pattern variant
 Scenario
-Code example metadata
 Pattern/scenario relationships
 Scenario/technology relationships
 Technology compatibility relationships
+```
+
+### Implemented tables
+
+```text
+core_languages
+technologies
+patterns
+pattern_variants
+scenarios
+scenario_patterns
+scenario_technologies
+technology_compatibilities
+```
+
+The schema is managed through Prisma migrations in:
+
+```text
+packages/database/prisma/migrations
+```
+
+The current migration is an initial catalog baseline. Future schema changes must use new migrations rather than editing an applied migration.
+
+### Initial PostgreSQL domains
+
+The following PostgreSQL domains remain planned:
+
+```text
+Platform
+Code example metadata
 Compatibility caveats
+Users
+Organizations
+Organization memberships
 Projects
 Saved comparisons
 Blueprints
@@ -168,18 +297,8 @@ Transactional outbox events
 ### Initial table direction
 
 ```text
-core_languages
-technologies
 platforms
-patterns
-pattern_variants
-scenarios
 code_examples
-
-pattern_scenarios
-scenario_technologies
-scenario_patterns
-technology_compatibilities
 compatibility_caveats
 
 users
@@ -201,6 +320,8 @@ outbox_events
 The table list is directional. It should evolve through migrations and ADRs rather than being treated as a final schema.
 
 ### Transactional outbox
+
+> Status: Proposed
 
 The transactional outbox is required for business state that produces events.
 
@@ -607,6 +728,17 @@ Curated source content
 → refreshed application queries
 ```
 
+Current implementation:
+
+```text
+Curated source-controlled seed data
+→ PostgreSQL catalog records
+→ server-side repository query
+→ optional pattern-detail enrichment
+```
+
+Kafka publication, ClickHouse ingestion, graph projection, and automated import workflows remain proposed.
+
 ### Blueprint lifecycle
 
 ```text
@@ -661,6 +793,8 @@ Client-side environment variables
 Frontend telemetry
 ```
 
+The local PostgreSQL Compose password and `.env.example` connection string are development-only placeholders. Production, preview, and shared environments must inject a distinct `DATABASE_URL` through their environment or secrets-management configuration.
+
 ### Retention
 
 Retention rules should differ by workload:
@@ -681,55 +815,61 @@ The target platform should be delivered incrementally.
 
 ### Phase 1: PostgreSQL catalog foundation
 
+> Status: Initial vertical slice complete
+
 ```text
-- Database package and migrations.
-- Core catalog tables.
-- Seed/import process for curated content.
-- Repository and query layer.
-- Database-backed Explore experience.
+- [x] Database package and migrations.
+- [x] Core catalog tables.
+- [x] Idempotent seed process for an initial curated catalog slice.
+- [x] Repository and query layer.
+- [x] Database enrichment for /patterns/adapter.
+- [x] Authored-content fallback when the optional catalog is unavailable.
+- [ ] Automated catalog import pipeline.
+- [ ] Broader database-backed Explore and scenario experiences.
+- [ ] CI PostgreSQL migration, seed, and repository-query smoke test.
 ```
 
 ### Phase 2: Event foundation
 
 ```text
-- Shared event schemas.
-- Transactional outbox.
-- Kafka producer.
-- Initial consumer.
-- Dead-letter handling.
+- [ ] Shared event schemas.
+- [ ] Transactional outbox.
+- [ ] Kafka producer.
+- [ ] Initial consumer.
+- [ ] Dead-letter handling.
 ```
 
 ### Phase 3: ClickHouse and Grafana
 
 ```text
-- Raw event ingestion.
-- Event-log table.
-- Initial product and pipeline dashboards.
-- Consumer-lag and outbox-health visibility.
+- [ ] Raw event ingestion.
+- [ ] Event-log table.
+- [ ] Initial product and pipeline dashboards.
+- [ ] Consumer-lag and outbox-health visibility.
 ```
 
 ### Phase 4: MongoDB documents
 
 ```text
-- Blueprint and AI artifact collections.
-- MongoDB change-stream lifecycle events.
-- Document projection and revision support.
+- [ ] Blueprint and AI artifact collections.
+- [ ] MongoDB change-stream lifecycle events.
+- [ ] Document projection and revision support.
 ```
 
 ### Phase 5: Graph projection
 
 ```text
-- Graph projection worker.
-- Initial scenario, pattern, technology, and compatibility relationships.
-- Related-content and recommendation-explanation queries.
+- [ ] Graph projection worker.
+- [ ] Initial scenario, pattern, technology, and compatibility relationships.
+- [ ] Related-content and recommendation-explanation queries.
 ```
 
 ### Phase 6: Real-time workflows
 
 ```text
-- Kafka-backed notification consumer.
-- Server-Sent Event gateway.
-- AI Studio and Composer progress updates.
+- [ ] Kafka-backed notification consumer.
+- [ ] Server-Sent Event gateway.
+- [ ] AI Studio and Composer progress updates.
 ```
 
 ## Non-negotiable rules
@@ -753,6 +893,8 @@ The target platform should be delivered incrementally.
 - [Application architecture](application-architecture.md)
 - [Domain model](domain-model.md)
 - [Eventing model](eventing.md)
+- [Getting started](../development/getting-started.md)
+- [Workspace guide](../development/workspace.md)
 - [Observability](../operations/observability.md)
 - [Security and data handling](../operations/security-and-data-handling.md)
 - [Architecture Decision Records](../decisions/README.md)

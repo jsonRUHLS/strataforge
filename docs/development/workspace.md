@@ -1,11 +1,11 @@
 # Workspace Guide
 
 > Status: Current  
-> Last updated: 2026-08-12
+> Last updated: 2026-08-14
 
 StrataForge is managed as a pnpm workspace. The workspace contains a primary Next.js application, shared packages, documentation, scripts, and GitHub Actions workflows.
 
-This guide explains the current repository structure, workspace commands, dependency rules, and the planned package evolution.
+This guide explains the current repository structure, workspace commands, dependency rules, and planned package evolution.
 
 For local setup, see [Getting started](getting-started.md). For architectural package boundaries, see [ADR-0001: Monorepo and package boundaries](../decisions/0001-monorepo-and-package-boundaries.md).
 
@@ -23,6 +23,16 @@ strataforge/
 │
 ├── packages/
 │   ├── content/
+│   ├── database/
+│   │   ├── prisma/
+│   │   │   ├── migrations/
+│   │   │   ├── prisma.config.ts
+│   │   │   └── schema.prisma
+│   │   ├── src/
+│   │   │   ├── repositories/
+│   │   │   ├── client.ts
+│   │   │   └── seed.ts
+│   │   └── package.json
 │   ├── integrations/
 │   ├── schemas/
 │   └── ui/
@@ -34,6 +44,10 @@ strataforge/
 │   ├── operations/
 │   ├── planning/
 │   └── product/
+│
+├── infra/
+│   └── compose/
+│       └── docker-compose.postgres.yml
 │
 ├── scripts/
 │
@@ -90,6 +104,7 @@ It owns:
 - Pattern exploration and comparison experiences.
 - Application-specific components.
 - Page-level data composition.
+- Server-side composition of authored content and optional catalog data.
 - Future route handlers and API boundaries.
 - Future authenticated user experiences.
 - Future Server-Sent Event client integration.
@@ -97,6 +112,8 @@ It owns:
 It should not own:
 
 - Canonical database schema definitions.
+- Prisma Client construction.
+- Repository queries.
 - Kafka consumer processing.
 - MongoDB change-stream processing.
 - Graph projections.
@@ -131,9 +148,56 @@ It is the current home for:
 - Curated technology references.
 - Authored content metadata.
 
-The package should remain the authored source for curated examples during the early database transition.
+The package remains the authored source for curated examples during the early database transition.
 
-Later, structured metadata may be imported into PostgreSQL while source files remain the initial authoring workflow.
+Structured metadata can be imported into PostgreSQL while source files remain the initial authoring workflow.
+
+### `packages/database`
+
+The database package owns PostgreSQL catalog access.
+
+It contains:
+
+- Prisma schema definitions.
+- Prisma migrations.
+- Prisma Client construction.
+- Catalog repository queries.
+- Idempotent catalog seed data.
+- Database package build configuration and generated type declarations.
+
+Its current responsibility is the PostgreSQL catalog foundation, including:
+
+- Core languages.
+- Technologies.
+- Patterns.
+- Pattern variants.
+- Scenarios.
+- Scenario-to-pattern relationships.
+- Scenario-to-technology relationships.
+- Technology compatibility relationships.
+
+It exports server-side query functions such as:
+
+```text
+getPatternBySlug
+getOptionalPatternBySlug
+getScenarioBySlug
+```
+
+`getOptionalPatternBySlug` is intended for optional catalog enrichment. It returns `null` when `DATABASE_URL` is absent or PostgreSQL cannot initialize, allowing the caller to render its content-backed fallback.
+
+It must not contain:
+
+- React components.
+- Next.js routes.
+- Browser-only code.
+- Page composition.
+- Client-side environment configuration.
+- Kafka producer or consumer behavior.
+- Graph projections.
+- AI-provider SDK logic.
+
+The package is server-only. Do not import Prisma directly into React client components or expose database credentials with `NEXT_PUBLIC_` environment variables.
 
 ### `packages/schemas`
 
@@ -230,6 +294,7 @@ apps/pattern-atlas-web
   → packages/ui
   → packages/content
   → packages/schemas
+  → packages/database
   → packages/integrations
 
 Future:
@@ -298,7 +363,9 @@ The root lint command runs lint scripts across relevant workspace packages.
 pnpm build
 ```
 
-The root build command runs package build scripts. The Next.js production build performs compilation and TypeScript validation for the web application.
+The root build command runs package build scripts.
+
+The database package generates Prisma Client and emits its compiled `dist` artifacts before the web application build runs. The Next.js production build then performs compilation and TypeScript validation for the web application.
 
 ### Run a package-specific command
 
@@ -306,6 +373,10 @@ Use pnpm filtering when working on one package.
 
 ```bash
 pnpm --filter ./apps/pattern-atlas-web dev
+```
+
+```bash
+pnpm --filter ./packages/database build
 ```
 
 ```bash
@@ -317,6 +388,77 @@ pnpm --filter ./packages/ui lint
 ```
 
 Use the package path when the workspace package name is uncertain.
+
+## Database package commands
+
+Run these from the repository root.
+
+### Generate Prisma Client
+
+```bash
+pnpm --filter @atlas-patterns/database generate
+```
+
+Run this after changing `packages/database/prisma/schema.prisma`.
+
+The database package also generates Prisma Client automatically as part of:
+
+```bash
+pnpm --filter @atlas-patterns/database build
+```
+
+### Build the database package
+
+```bash
+pnpm --filter @atlas-patterns/database build
+```
+
+This generates Prisma Client, type-checks the package, and emits JavaScript and declaration files to:
+
+```text
+packages/database/dist
+```
+
+The `dist` directory is generated output and should not be committed.
+
+### Create and apply a development migration
+
+```bash
+pnpm --filter @atlas-patterns/database migrate:dev
+```
+
+Use this only in local development when changing the Prisma schema.
+
+Commit the generated migration directory under:
+
+```text
+packages/database/prisma/migrations
+```
+
+Do not edit an already-applied migration. Create a new migration for later schema changes.
+
+### Apply committed migrations
+
+```bash
+pnpm --filter @atlas-patterns/database migrate:deploy
+```
+
+Use this in deployment-oriented environments with an existing `DATABASE_URL`.
+
+### Seed the catalog
+
+```bash
+pnpm --filter @atlas-patterns/database seed
+```
+
+The seed is idempotent. It uses stable slugs and composite relationship keys so it can safely update existing records without producing duplicate catalog data.
+
+### Inspect local catalog data
+
+```bash
+pnpm --filter @atlas-patterns/database exec prisma studio \
+  --schema prisma/schema.prisma
+```
 
 ## Dependency management
 
@@ -341,6 +483,15 @@ For a peer dependency:
 ```bash
 pnpm --filter ./packages/ui add package-name --save-peer
 ```
+
+Add a workspace dependency using the workspace protocol:
+
+```bash
+pnpm --filter ./apps/pattern-atlas-web add \
+  "@atlas-patterns/database@workspace:*"
+```
+
+Quote the package specifier in `zsh` so the shell does not interpret `*` as a glob.
 
 ### Add a root development dependency
 
@@ -383,9 +534,6 @@ Do not delete it to solve installation issues.
 The following packages and application will be introduced only when their corresponding implementation work begins.
 
 ```text
-packages/database
-  PostgreSQL client, migrations, repositories, outbox support
-
 packages/events
   Event contracts, Kafka configuration, producers, consumer helpers
 
@@ -405,12 +553,11 @@ packages/graph
 Recommended introduction order:
 
 ```text
-1. packages/database
-2. packages/events
-3. apps/event-worker
-4. packages/recommendations
-5. packages/documents
-6. packages/graph
+1. packages/events
+2. apps/event-worker
+3. packages/recommendations
+4. packages/documents
+5. packages/graph
 ```
 
 Do not create empty placeholder packages solely because they appear in the target architecture. Introduce each package with a real responsibility, minimal implementation, validation approach, and documentation update.
@@ -428,8 +575,19 @@ Before opening a pull request that changes workspace structure or dependencies:
 - pnpm lint succeeds without new errors.
 - pnpm build succeeds.
 - Shared contracts are placed in packages/schemas.
+- Database access remains isolated to server-side code and packages/database.
 - Public product text uses StrataForge.
 - Internal namespace changes are isolated to a dedicated migration.
+```
+
+For database package changes, also verify:
+
+```text
+- Prisma Client generates successfully.
+- The database package builds successfully.
+- The relevant migration applies to local PostgreSQL.
+- The seed completes successfully and remains idempotent.
+- Generated dist artifacts and local environment files are not staged.
 ```
 
 ## Common workspace problems
@@ -480,10 +638,31 @@ packages/ui imports next/link
 
 Do not assume the consuming application’s dependencies are automatically visible to every workspace package.
 
+### Prisma Client has no exported member `PrismaClient`
+
+Generate Prisma Client, then rebuild the database package:
+
+```bash
+pnpm --filter @atlas-patterns/database generate
+pnpm --filter @atlas-patterns/database build
+```
+
+Do not copy generated Prisma Client files into source control.
+
+### Web application cannot resolve a database export
+
+Confirm that:
+
+1. `@atlas-patterns/database` is declared in `apps/pattern-atlas-web/package.json`.
+2. The database package exports the required function from `src/index.ts`.
+3. The database package builds successfully.
+4. The import is server-side and does not originate from a component marked `"use client"`.
+
 ## Related documents
 
 - [Getting started](getting-started.md)
 - [Testing and CI](testing-and-ci.md)
 - [Contribution guide](contribution-guide.md)
+- [Data platform](../architecture/data-platform.md)
 - [Application architecture](../architecture/application-architecture.md)
 - [ADR-0001: Monorepo and package boundaries](../decisions/0001-monorepo-and-package-boundaries.md)
