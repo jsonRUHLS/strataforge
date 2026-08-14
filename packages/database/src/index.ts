@@ -1,2 +1,2 @@
 export { prisma } from "./client.js";
-export * from "./respositories/catalog.js";
+export { getScenarioBySlug, getPatternBySlug } from "./repositories/catalog.js";

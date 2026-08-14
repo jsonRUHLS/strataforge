@@ -29,3 +29,24 @@ export async function getScenarioBySlug(slug: string) {
     },
   });
 }
+
+export async function getPatternBySlug(slug: string) {
+  return prisma.pattern.findUnique({
+    where: { slug },
+    include: {
+      variants: {
+        include: {
+          coreLanguage: true,
+        },
+        orderBy: {
+          title: "asc",
+        },
+      },
+      scenarioLinks: {
+        include: {
+          scenario: true,
+        },
+      },
+    },
+  });
+}
