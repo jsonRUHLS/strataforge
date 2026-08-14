@@ -12,10 +12,11 @@
     }
   },
   "scripts": {
-    "build": "tsc --project tsconfig.json",
-    "generate": "prisma generate",
-    "migrate:dev": "prisma migrate dev",
-    "migrate:deploy": "prisma migrate deploy",
+    "postinstall": "prisma generate --schema prisma/schema.prisma",
+    "generate": "prisma generate --schema prisma/schema.prisma",
+    "build": "pnpm run generate && tsc --project tsconfig.json",
+    "migrate:dev": "prisma migrate dev --schema prisma/schema.prisma",
+    "migrate:deploy": "prisma migrate deploy --schema prisma/schema.prisma",
     "seed": "tsx src/seed.ts"
   },
   "dependencies": {
