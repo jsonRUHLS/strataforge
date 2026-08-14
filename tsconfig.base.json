@@ -27,8 +27,7 @@
       "@atlas-patterns/schemas": ["./packages/schemas/src/index.ts"],
       "@atlas-patterns/integrations": ["./packages/integrations/src/index.ts"],
       "@atlas-patterns/ui": ["./packages/ui/src/index.ts"],
-      "@atlas-patterns/database": ["./packages/database/src/index.ts"],
-      "@components/*": ["./apps/pattern-atlas-web/components/*"],
+      "@components/*": ["./apps/pattern-atlas-web/components/*"]
     },
     "types": ["node"]
   },
