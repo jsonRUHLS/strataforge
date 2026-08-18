@@ -1,4 +1,99 @@
 import { prisma } from "./client.js";
+import { authoredScenarioMigrations } from "./migrations/authored-scenarios.js";
+
+async function requirePatternId(slug: string) {
+  const pattern = await prisma.pattern.findUnique({
+    where: { slug },
+    select: { id: true },
+  });
+
+  if (!pattern) {
+    throw new Error(
+      `[seed] Scenario migration references missing pattern "${slug}".`,
+    );
+  }
+
+  return pattern.id;
+}
+
+async function requireTechnologyId(slug: string) {
+  const technology = await prisma.technology.findUnique({
+    where: { slug },
+    select: { id: true },
+  });
+
+  if (!technology) {
+    throw new Error(
+      `[seed] Scenario migration references missing technology "${slug}".`,
+    );
+  }
+
+  return technology.id;
+}
+
+async function seedScenarios() {
+  for (const migration of authoredScenarioMigrations) {
+    const scenario = await prisma.scenario.upsert({
+      where: { slug: migration.slug },
+      update: {
+        name: migration.name,
+        summary: migration.summary,
+        problemStatement: migration.problemStatement,
+        status: "ACTIVE",
+      },
+      create: {
+        slug: migration.slug,
+        name: migration.name,
+        summary: migration.summary,
+        problemStatement: migration.problemStatement,
+        status: "ACTIVE",
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    for (const patternSlug of migration.patternSlugs) {
+      const patternId = await requirePatternId(patternSlug);
+
+      await prisma.scenarioPattern.upsert({
+        where: {
+          scenarioId_patternId: {
+            scenarioId: scenario.id,
+            patternId,
+          },
+        },
+        update: {},
+        create: {
+          scenarioId: scenario.id,
+          patternId,
+        },
+      });
+    }
+
+    for (const technologySlug of migration.technologySlugs) {
+      const technologyId = await requireTechnologyId(technologySlug);
+
+      await prisma.scenarioTechnology.upsert({
+        where: {
+          scenarioId_technologyId: {
+            scenarioId: scenario.id,
+            technologyId,
+          },
+        },
+        update: {},
+        create: {
+          scenarioId: scenario.id,
+          technologyId,
+        },
+      });
+    }
+
+    console.log(
+      `[seed] Scenario "${migration.slug}" linked to ${migration.patternSlugs.length} pattern(s) and ${migration.technologySlugs.length} technology record(s).`,
+    );
+  }
+}
 
 async function main() {
   const typescript = await prisma.coreLanguage.upsert({
@@ -62,28 +157,28 @@ async function main() {
     },
   });
 
-  const scenario = await prisma.scenario.upsert({
-    where: { slug: "third-party-task-api" },
+  const abstractFactory = await prisma.pattern.upsert({
+    where: { slug: "abstract-factory" },
     update: {
-      name: "Third-party task API integration",
+      name: "Abstract Factory",
       summary:
-        "Integrate an external task provider behind an application-owned interface.",
-      problemStatement:
-        "The application depends on a third-party task API whose contract differs from the internal domain model.",
+        "Provides an interface for creating families of related objects without specifying their concrete classes.",
+      category: "Creational",
+      layer: "Application",
       status: "ACTIVE",
     },
     create: {
-      slug: "third-party-task-api",
-      name: "Third-party task API integration",
+      slug: "abstract-factory",
+      name: "Abstract Factory",
       summary:
-        "Integrate an external task provider behind an application-owned interface.",
-      problemStatement:
-        "The application depends on a third-party task API whose contract differs from the internal domain model.",
+        "Provides an interface for creating families of related objects without specifying their concrete classes.",
+      category: "Creational",
+      layer: "Application",
       status: "ACTIVE",
     },
   });
 
-  const technologies = await Promise.all([
+  await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
       update: {
@@ -184,35 +279,7 @@ async function main() {
     }),
   ]);
 
-  await prisma.scenarioPattern.upsert({
-    where: {
-      scenarioId_patternId: {
-        scenarioId: scenario.id,
-        patternId: adapter.id,
-      },
-    },
-    update: {},
-    create: {
-      scenarioId: scenario.id,
-      patternId: adapter.id,
-    },
-  });
-
-  for (const technology of technologies) {
-    await prisma.scenarioTechnology.upsert({
-      where: {
-        scenarioId_technologyId: {
-          scenarioId: scenario.id,
-          technologyId: technology.id,
-        },
-      },
-      update: {},
-      create: {
-        scenarioId: scenario.id,
-        technologyId: technology.id,
-      },
-    });
-  }
+  await seedScenarios();
 
   console.log("Catalog seed completed.");
 }
