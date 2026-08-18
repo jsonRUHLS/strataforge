@@ -78,6 +78,7 @@ Run seed again
 | Command | 6 | 6 | Complete |
 | Composite | 6 | 6 | Complete |
 | Decorator | 8 | 8 | Complete |
+| Facade | 6 | 6 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -154,6 +155,15 @@ Run seed again
 - `decorator-logging-metrics-and-tracing`
 - `decorator-ui-accessibility-enhancement`
 
+### Facade
+
+- `facade-checkout-workflow`
+- `facade-video-conversion-pipeline`
+- `facade-home-theater-startup`
+- `facade-account-onboarding`
+- `facade-report-generation`
+- `facade-device-setup`
+
 ## Validation
 
 Run:
@@ -193,6 +203,7 @@ Chain of Responsibility
 Command
 Composite
 Decorator
+Facade
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.

@@ -304,6 +304,27 @@ async function main() {
     },
   });
 
+  const facade = await prisma.pattern.upsert({
+    where: { slug: "facade" },
+    update: {
+      name: "Facade",
+      summary:
+        "Provides a simplified, unified interface to a complex subsystem while hiding the coordination of its underlying components.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "facade",
+      name: "Facade",
+      summary:
+        "Provides a simplified, unified interface to a complex subsystem while hiding the coordination of its underlying components.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
