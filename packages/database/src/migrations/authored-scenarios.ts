@@ -658,4 +658,132 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "decorator-notification-delivery",
+    name: "Notification delivery",
+    summary:
+      "Wrap notification delivery with logging and retry behavior while preserving the same send contract.",
+    problemStatement:
+      "A notification service must add optional operational behavior such as logging and retries without changing the core delivery component or creating a subclass for every feature combination.",
+    patternSlugs: ["decorator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "decorator",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "decorator-http-client",
+    name: "HTTP client",
+    summary:
+      "Wrap an HTTP client with caching and metrics without changing its request interface.",
+    problemStatement:
+      "An application must add optional cross-cutting behavior such as caching and metrics around HTTP requests while keeping callers dependent on one stable client interface.",
+    patternSlugs: ["decorator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "decorator",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "decorator-file-storage",
+    name: "File storage",
+    summary:
+      "Wrap file storage with optional compression and encryption before persistence.",
+    problemStatement:
+      "A storage workflow must compose optional data-transformation layers such as compression and encryption around a base persistence component without modifying the storage contract.",
+    patternSlugs: ["decorator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "decorator",
+        scenarioIndex: 2,
+      },
+    ],
+  },
+  {
+    slug: "decorator-text-formatting",
+    name: "Text formatting",
+    summary:
+      "Wrap a text component with bold, italic, and underline formatting without modifying the original component.",
+    problemStatement:
+      "A text-rendering system must combine optional formatting behaviors dynamically while preserving a common component interface and avoiding a subclass for every possible formatting combination.",
+    patternSlugs: ["decorator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "decorator",
+        scenarioIndex: 3,
+      },
+    ],
+  },
+  {
+    slug: "decorator-coffee-customization",
+    name: "Coffee customization",
+    summary:
+      "Add extras such as milk, mocha, and whip to a base drink while composing behavior and cost.",
+    problemStatement:
+      "An ordering system must let customers combine optional drink additions and calculate the resulting behavior and price without defining a separate concrete type for every possible order combination.",
+    patternSlugs: ["decorator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "decorator",
+        scenarioIndex: 4,
+      },
+    ],
+  },
+  {
+    slug: "decorator-notification-channels",
+    name: "Notification channels",
+    summary:
+      "Wrap a base notifier with email, SMS, or Slack delivery layers to send one message through multiple channels.",
+    problemStatement:
+      "A notification system must compose multiple optional delivery channels around a common notifier contract without requiring message producers to coordinate each channel directly.",
+    patternSlugs: ["decorator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "decorator",
+        scenarioIndex: 5,
+      },
+    ],
+  },
+  {
+    slug: "decorator-logging-metrics-and-tracing",
+    name: "Logging, metrics, and tracing",
+    summary:
+      "Layer logging, metrics, and tracing around a core operation while keeping cross-cutting concerns separate.",
+    problemStatement:
+      "A service must apply independently composable observability concerns around an operation without embedding logging, metrics, and tracing behavior into every core service implementation.",
+    patternSlugs: ["decorator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "decorator",
+        scenarioIndex: 6,
+      },
+    ],
+  },
+  {
+    slug: "decorator-ui-accessibility-enhancement",
+    name: "UI accessibility enhancement",
+    summary:
+      "Wrap a UI component with labels, keyboard handling, and hints without changing the base component.",
+    problemStatement:
+      "A UI system must add optional accessibility behavior to individual components while preserving the base UI contract and avoiding modifications to each original component implementation.",
+    patternSlugs: ["decorator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "decorator",
+        scenarioIndex: 7,
+      },
+    ],
+  },
 ];
