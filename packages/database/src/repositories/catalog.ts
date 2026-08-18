@@ -54,6 +54,9 @@ export async function getScenarioBySlug(slug: string) {
                 include: {
                   coreLanguage: true,
                 },
+                orderBy: {
+                  title: "asc",
+                },
               },
             },
           },
