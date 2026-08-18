@@ -562,4 +562,100 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "composite-file-system-composite",
+    name: "File system composite",
+    summary:
+      "Treat files and folders through one interface so nested file-system structures can be processed uniformly.",
+    problemStatement:
+      "A file system must support operations over both individual files and nested folders without forcing clients to handle leaf and container types through separate traversal logic.",
+    patternSlugs: ["composite"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "composite",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "composite-menu-composite",
+    name: "Menu composite",
+    summary:
+      "Represent menu items and submenus together so the UI can render or invoke them consistently.",
+    problemStatement:
+      "A menu system must render and invoke both individual menu items and nested submenus through a common component interface without special-case UI logic for each hierarchy level.",
+    patternSlugs: ["composite"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "composite",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "composite-organization-chart-composite",
+    name: "Organization chart composite",
+    summary:
+      "Use a common component interface for employees and managers to traverse an organization hierarchy recursively.",
+    problemStatement:
+      "An organization chart must support recursive hierarchy operations across individual employees and managers with reports while keeping traversal clients independent of concrete node types.",
+    patternSlugs: ["composite"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "composite",
+        scenarioIndex: 2,
+      },
+    ],
+  },
+  {
+    slug: "composite-dashboard-widget-tree",
+    name: "Dashboard widget tree",
+    summary:
+      "Group widgets and widget containers so layout and rendering recurse over one structure.",
+    problemStatement:
+      "A dashboard must lay out and render individual widgets and nested widget containers without duplicating traversal and rendering behavior for each type of visual element.",
+    patternSlugs: ["composite"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "composite",
+        scenarioIndex: 3,
+      },
+    ],
+  },
+  {
+    slug: "composite-permission-group-hierarchy",
+    name: "Permission group hierarchy",
+    summary:
+      "Nest roles and permission groups so aggregate permissions can be evaluated recursively.",
+    problemStatement:
+      "An access-control system must evaluate permissions across individual roles and nested groups while allowing authorization logic to process both leaves and containers through the same interface.",
+    patternSlugs: ["composite"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "composite",
+        scenarioIndex: 4,
+      },
+    ],
+  },
+  {
+    slug: "composite-scene-graph-composite",
+    name: "Scene graph composite",
+    summary:
+      "Represent shapes and containers in a scene graph so rendering and transforms recurse through the hierarchy.",
+    problemStatement:
+      "A graphics engine must apply rendering and transformations to individual shapes and nested scene containers without requiring callers to distinguish leaf nodes from composite nodes.",
+    patternSlugs: ["composite"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "composite",
+        scenarioIndex: 5,
+      },
+    ],
+  },
 ];
