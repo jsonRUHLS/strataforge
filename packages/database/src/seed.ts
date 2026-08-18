@@ -493,6 +493,27 @@ async function main() {
     },
   });
 
+  const proxy = await prisma.pattern.upsert({
+    where: { slug: "proxy" },
+    update: {
+      name: "Proxy",
+      summary:
+        "Provides a substitute for another object that implements the same interface and controls access to the underlying service.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "proxy",
+      name: "Proxy",
+      summary:
+        "Provides a substitute for another object that implements the same interface and controls access to the underlying service.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
