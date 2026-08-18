@@ -1073,4 +1073,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "mediator-chat-room-mediator",
+    name: "Chat room mediator",
+    summary:
+      "Route user messages through a chat-room mediator instead of direct user-to-user communication.",
+    problemStatement:
+      "A chat application must coordinate message delivery among users without requiring each user to know or directly depend on every other participant.",
+    patternSlugs: ["mediator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "mediator",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "mediator-air-traffic-mediator",
+    name: "Air traffic mediator",
+    summary:
+      "Coordinate aircraft landing and takeoff decisions through an air-traffic-control mediator.",
+    problemStatement:
+      "Aircraft must coordinate shared runway and airspace decisions without directly communicating and coupling every aircraft to all other aircraft.",
+    patternSlugs: ["mediator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "mediator",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "mediator-ui-mediator",
+    name: "UI mediator",
+    summary:
+      "Coordinate form-control enabling, validation, and updates through a UI mediator.",
+    problemStatement:
+      "A form must coordinate interactions among controls without embedding direct dependencies between every field, validator, action, and display component.",
+    patternSlugs: ["mediator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "mediator",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
