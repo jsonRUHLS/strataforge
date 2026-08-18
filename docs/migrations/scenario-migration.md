@@ -75,6 +75,7 @@ Run seed again
 | Bridge | 6 | 6 | Complete |
 | Builder | 7 | 7 | Complete |
 | Chain of Responsibility | 6 | 6 | Complete |
+| Command | 6 | 6 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -122,6 +123,15 @@ Run seed again
 - `chain-of-responsibility-notification-routing-chain`
 - `chain-of-responsibility-form-command-chain`
 
+### Command
+
+- `command-text-editor-undo`
+- `command-job-queue-processing`
+- `command-remote-control-actions`
+- `command-admin-action-queue`
+- `command-workflow-step-command`
+- `command-macro-command-sequence`
+
 ## Validation
 
 Run:
@@ -158,6 +168,7 @@ Adapter
 Bridge
 Builder
 Chain of Responsibility
+Command
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.

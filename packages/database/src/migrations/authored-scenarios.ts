@@ -466,4 +466,100 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "command-text-editor-undo",
+    name: "Text editor undo",
+    summary:
+      "Wrap text insertion operations in commands that can be executed and later undone from history.",
+    problemStatement:
+      "A text editor must record user operations with enough information to reverse them later without coupling the history mechanism to individual editing operations.",
+    patternSlugs: ["command"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "command",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "command-job-queue-processing",
+    name: "Job queue processing",
+    summary:
+      "Store jobs as commands so they can be submitted now and executed later by a worker.",
+    problemStatement:
+      "A task runner must accept work independently of when a worker executes it, while keeping queue infrastructure decoupled from the details of each job.",
+    patternSlugs: ["command"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "command",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "command-remote-control-actions",
+    name: "Remote control actions",
+    summary:
+      "Bind remote-control buttons to commands that trigger device actions without device-specific invoker logic.",
+    problemStatement:
+      "A remote control must invoke interchangeable device actions without knowing the receiver APIs or embedding conditional logic for every supported device.",
+    patternSlugs: ["command"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "command",
+        scenarioIndex: 2,
+      },
+    ],
+  },
+  {
+    slug: "command-admin-action-queue",
+    name: "Admin action queue",
+    summary:
+      "Record administrative exports, notifications, and recalculations as commands for later execution.",
+    problemStatement:
+      "An admin console must capture potentially long-running actions for deferred processing while retaining the action details needed by asynchronous workers.",
+    patternSlugs: ["command"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "command",
+        scenarioIndex: 3,
+      },
+    ],
+  },
+  {
+    slug: "command-workflow-step-command",
+    name: "Workflow step command",
+    summary:
+      "Model each business-process step as a command invoked by a workflow coordinator.",
+    problemStatement:
+      "A process engine must coordinate varied business-flow steps without embedding the implementation details of every step in the coordinator.",
+    patternSlugs: ["command"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "command",
+        scenarioIndex: 4,
+      },
+    ],
+  },
+  {
+    slug: "command-macro-command-sequence",
+    name: "Macro command sequence",
+    summary:
+      "Bundle several actions into a reusable macro that runs from one trigger.",
+    problemStatement:
+      "A productivity tool must package an ordered set of actions as one reusable operation while allowing the invoker to execute the macro through the same command interface as individual actions.",
+    patternSlugs: ["command"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "command",
+        scenarioIndex: 5,
+      },
+    ],
+  },
 ];
