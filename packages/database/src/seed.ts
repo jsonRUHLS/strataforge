@@ -262,6 +262,27 @@ async function main() {
     },
   });
 
+  const composite = await prisma.pattern.upsert({
+    where: { slug: "composite" },
+    update: {
+      name: "Composite",
+      summary:
+        "Composes objects into tree structures so individual objects and groups of objects can be treated uniformly through a common interface.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "composite",
+      name: "Composite",
+      summary:
+        "Composes objects into tree structures so individual objects and groups of objects can be treated uniformly through a common interface.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },

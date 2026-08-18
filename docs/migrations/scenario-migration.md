@@ -76,6 +76,7 @@ Run seed again
 | Builder | 7 | 7 | Complete |
 | Chain of Responsibility | 6 | 6 | Complete |
 | Command | 6 | 6 | Complete |
+| Composite | 6 | 6 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -132,6 +133,15 @@ Run seed again
 - `command-workflow-step-command`
 - `command-macro-command-sequence`
 
+### Composite
+
+- `composite-file-system-composite`
+- `composite-menu-composite`
+- `composite-organization-chart-composite`
+- `composite-dashboard-widget-tree`
+- `composite-permission-group-hierarchy`
+- `composite-scene-graph-composite`
+
 ## Validation
 
 Run:
@@ -169,6 +179,7 @@ Bridge
 Builder
 Chain of Responsibility
 Command
+Composite
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.
