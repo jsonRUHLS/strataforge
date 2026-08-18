@@ -163,4 +163,100 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "bridge-data-source-abstraction",
+    name: "Data source abstraction",
+    summary:
+      "Read reporting data from SQL, API, or file-based sources without changing reporting logic.",
+    problemStatement:
+      "The reporting layer must support multiple data-source implementations while keeping report-generation behavior independent of source-specific access code.",
+    patternSlugs: ["bridge"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "bridge",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "bridge-notification-delivery",
+    name: "Notification delivery",
+    summary:
+      "Send the same notification through email, SMS, or push channels without changing the sending flow.",
+    problemStatement:
+      "The notification workflow must support interchangeable delivery-channel implementations without coupling application behavior to a specific channel.",
+    patternSlugs: ["bridge"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "bridge",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "bridge-payment-routing",
+    name: "Payment routing",
+    summary:
+      "Route checkout payments through different payment providers while keeping the checkout API stable.",
+    problemStatement:
+      "The checkout flow must support provider-specific payment implementations without exposing provider contracts to the application-facing checkout API.",
+    patternSlugs: ["bridge"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "bridge",
+        scenarioIndex: 2,
+      },
+    ],
+  },
+  {
+    slug: "bridge-printer-driver-layer",
+    name: "Printer driver layer",
+    summary:
+      "Print documents through interchangeable local, network, or cloud printer drivers.",
+    problemStatement:
+      "A document application must support multiple printer implementations without coupling document-printing behavior to a specific driver.",
+    patternSlugs: ["bridge"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "bridge",
+        scenarioIndex: 3,
+      },
+    ],
+  },
+  {
+    slug: "bridge-remote-control-bridge",
+    name: "Remote control bridge",
+    summary:
+      "Control TVs, speakers, and streaming devices through interchangeable device implementations.",
+    problemStatement:
+      "A remote-control interface must operate different device implementations without embedding device-specific behavior in the control abstraction.",
+    patternSlugs: ["bridge"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "bridge",
+        scenarioIndex: 4,
+      },
+    ],
+  },
+  {
+    slug: "bridge-shape-renderer-bridge",
+    name: "Shape renderer bridge",
+    summary:
+      "Render shapes through screen, canvas, or SVG backends without changing shape behavior.",
+    problemStatement:
+      "Shape abstractions must support multiple rendering implementations without coupling shape logic to a particular drawing backend.",
+    patternSlugs: ["bridge"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "bridge",
+        scenarioIndex: 5,
+      },
+    ],
+  },
 ];
