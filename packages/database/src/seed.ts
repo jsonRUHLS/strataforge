@@ -367,6 +367,27 @@ async function main() {
     },
   });
 
+  const interpreter = await prisma.pattern.upsert({
+    where: { slug: "interpreter" },
+    update: {
+      name: "Interpreter",
+      summary:
+        "Defines a grammar for a simple language and represents its rules as expressions that can interpret sentences in a context.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "interpreter",
+      name: "Interpreter",
+      summary:
+        "Defines a grammar for a simple language and represents its rules as expressions that can interpret sentences in a context.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },

@@ -81,6 +81,7 @@ Run seed again
 | Facade | 6 | 6 | Complete |
 | Factory Method | 3 | 3 | Complete |
 | Flyweight | 3 | 3 | Complete |
+| Interpreter | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -178,6 +179,12 @@ Run seed again
 - `flyweight-text-formatting-flyweight`
 - `flyweight-game-tile-flyweight`
 
+### Interpreter
+
+- `interpreter-expression-interpreter`
+- `interpreter-boolean-rule-interpreter`
+- `interpreter-command-interpreter`
+
 ## Validation
 
 Run:
@@ -220,6 +227,7 @@ Decorator
 Facade
 Factory Method
 Flyweight
+Interpreter
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.
