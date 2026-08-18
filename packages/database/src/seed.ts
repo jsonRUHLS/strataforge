@@ -577,6 +577,27 @@ async function main() {
     },
   });
 
+  const templateMethod = await prisma.pattern.upsert({
+    where: { slug: "template-method" },
+    update: {
+      name: "Template Method",
+      summary:
+        "Defines the fixed skeleton of an algorithm in a base type while allowing subclasses to customize selected steps without changing the overall sequence.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "template-method",
+      name: "Template Method",
+      summary:
+        "Defines the fixed skeleton of an algorithm in a base type while allowing subclasses to customize selected steps without changing the overall sequence.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },

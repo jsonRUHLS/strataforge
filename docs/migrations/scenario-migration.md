@@ -91,6 +91,7 @@ Run seed again
 | Singleton | 3 | 3 | Complete |
 | State | 3 | 3 | Complete |
 | Strategy | 3 | 3 | Complete |
+| Template Method | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -248,6 +249,12 @@ Run seed again
 - `strategy-shipping-cost-calculation`
 - `strategy-notification-delivery`
 
+### Template Method
+
+- `template-method-order-processing-template`
+- `template-method-report-generation-template`
+- `template-method-data-import-template`
+
 ## Validation
 
 Run:
@@ -300,6 +307,7 @@ Proxy
 Singleton
 State
 Strategy
+Template Method
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.
