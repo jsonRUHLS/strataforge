@@ -259,4 +259,115 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "builder-api-request-construction",
+    name: "API request construction",
+    summary: "Assemble a complex API request step by step before sending it.",
+    problemStatement:
+      "A client must configure a request with optional headers, parameters, authentication, and payload details without relying on a large constructor or exposing incomplete request objects.",
+    patternSlugs: ["builder"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "builder",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "builder-report-generation",
+    name: "Report generation",
+    summary:
+      "Assemble a report from headers, body sections, charts, and footers.",
+    problemStatement:
+      "A reporting tool must construct reports with optional and ordered sections while keeping report assembly separate from the final report representation.",
+    patternSlugs: ["builder"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "builder",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "builder-ui-form-assembly",
+    name: "UI form assembly",
+    summary:
+      "Construct a multi-step user interface with fields, validation, and actions.",
+    problemStatement:
+      "A form workflow must build configurable multi-step interfaces while ensuring fields, validation rules, and actions are assembled in a valid sequence.",
+    patternSlugs: ["builder"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "builder",
+        scenarioIndex: 2,
+      },
+    ],
+  },
+  {
+    slug: "builder-configuration-assembly",
+    name: "Configuration assembly",
+    summary:
+      "Build a runtime configuration object from many optional settings.",
+    problemStatement:
+      "An application must construct a valid configuration from optional settings without using a large constructor or allowing invalid partial configuration to leak into runtime behavior.",
+    patternSlugs: ["builder"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "builder",
+        scenarioIndex: 3,
+      },
+    ],
+  },
+  {
+    slug: "builder-document-composition",
+    name: "Document composition",
+    summary:
+      "Assemble invoices, contracts, or letters from reusable document sections.",
+    problemStatement:
+      "A document pipeline must compose documents from optional reusable sections while keeping document construction independent of a specific final document type.",
+    patternSlugs: ["builder"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "builder",
+        scenarioIndex: 4,
+      },
+    ],
+  },
+  {
+    slug: "builder-character-creation",
+    name: "Character creation",
+    summary:
+      "Build a game character with a name, class, and class-dependent statistics step by step.",
+    problemStatement:
+      "A game must construct valid character configurations with class-dependent properties while preventing incomplete or incompatible attribute combinations.",
+    patternSlugs: ["builder"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "builder",
+        scenarioIndex: 5,
+      },
+    ],
+  },
+  {
+    slug: "builder-pizza-order-construction",
+    name: "Pizza order construction",
+    summary:
+      "Assemble a pizza order with a selected size, crust, toppings, and extras.",
+    problemStatement:
+      "A food-ordering workflow must build customizable orders with optional choices while validating required selections and valid option combinations.",
+    patternSlugs: ["builder"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "builder",
+        scenarioIndex: 6,
+      },
+    ],
+  },
 ];

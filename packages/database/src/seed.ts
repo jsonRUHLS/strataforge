@@ -199,6 +199,27 @@ async function main() {
     },
   });
 
+  const builder = await prisma.pattern.upsert({
+    where: { slug: "builder" },
+    update: {
+      name: "Builder",
+      summary:
+        "Separates the construction of a complex object from its representation so the same construction process can create different representations.",
+      category: "Creational",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "builder",
+      name: "Builder",
+      summary:
+        "Separates the construction of a complex object from its representation so the same construction process can create different representations.",
+      category: "Creational",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
