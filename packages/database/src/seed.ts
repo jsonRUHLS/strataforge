@@ -430,6 +430,27 @@ async function main() {
     },
   });
 
+  const memento = await prisma.pattern.upsert({
+    where: { slug: "memento" },
+    update: {
+      name: "Memento",
+      summary:
+        "Captures and externalizes an object's internal state so it can be restored later without exposing implementation details.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "memento",
+      name: "Memento",
+      summary:
+        "Captures and externalizes an object's internal state so it can be restored later without exposing implementation details.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },

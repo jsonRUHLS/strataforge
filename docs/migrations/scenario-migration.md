@@ -84,6 +84,7 @@ Run seed again
 | Interpreter | 3 | 3 | Complete |
 | Iterator | 3 | 3 | Complete |
 | Mediator | 3 | 3 | Complete |
+| Memento | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -199,6 +200,12 @@ Run seed again
 - `mediator-air-traffic-mediator`
 - `mediator-ui-mediator`
 
+### Memento
+
+- `memento-text-editor-memento`
+- `memento-game-save-memento`
+- `memento-form-state-memento`
+
 ## Validation
 
 Run:
@@ -244,6 +251,7 @@ Flyweight
 Interpreter
 Iterator
 Mediator
+Memento
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.
