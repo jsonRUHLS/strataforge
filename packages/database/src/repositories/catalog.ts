@@ -91,3 +91,43 @@ export async function getOptionalScenarioBySlug(slug: string) {
     throw error;
   }
 }
+
+export async function listScenarios() {
+  return prisma.scenario.findMany({
+    orderBy: {
+      name: "asc",
+    },
+    select: {
+      id: true,
+      slug: true,
+      name: true,
+      summary: true,
+      _count: {
+        select: {
+          patternLinks: true,
+          technologyLinks: true,
+        },
+      },
+    },
+  });
+}
+
+export async function listOptionalScenarios() {
+  if (!process.env.DATABASE_URL) {
+    return null;
+  }
+
+  try {
+    return await listScenarios();
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientInitializationError) {
+      console.warn(
+        "[catalog] PostgreSQL is unavailable; scenario list cannot be loaded.",
+      );
+
+      return null;
+    }
+
+    throw error;
+  }
+}
