@@ -87,6 +87,7 @@ Run seed again
 | Memento | 3 | 3 | Complete |
 | Observer | 3 | 3 | Complete |
 | Prototype | 3 | 3 | Complete |
+| Proxy | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -220,6 +221,12 @@ Run seed again
 - `prototype-game-character-clone`
 - `prototype-product-config-clone`
 
+### Proxy
+
+- `proxy-virtual-image-proxy`
+- `proxy-access-control-proxy`
+- `proxy-remote-service-proxy`
+
 ## Validation
 
 Run:
@@ -268,6 +275,7 @@ Mediator
 Memento
 Observer
 Prototype
+Proxy
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.

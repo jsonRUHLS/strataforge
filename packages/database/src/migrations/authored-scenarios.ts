@@ -1263,4 +1263,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "proxy-virtual-image-proxy",
+    name: "Virtual image proxy",
+    summary:
+      "Delay loading high-resolution images until an image is actually displayed.",
+    problemStatement:
+      "An image viewer must avoid loading expensive high-resolution image data until it is needed while allowing clients to interact through the same image interface.",
+    patternSlugs: ["proxy"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "proxy",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "proxy-access-control-proxy",
+    name: "Access control proxy",
+    summary:
+      "Check permissions before allowing operations on a sensitive resource.",
+    problemStatement:
+      "A system must enforce authorization before delegating sensitive operations to a protected resource while preserving the resource's interface for authorized clients.",
+    patternSlugs: ["proxy"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "proxy",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "proxy-remote-service-proxy",
+    name: "Remote service proxy",
+    summary:
+      "Wrap a remote service call so clients can interact with it like a local object.",
+    problemStatement:
+      "A client must invoke a remote service without directly handling network communication, serialization, and remote-location details or depending on a different service interface.",
+    patternSlugs: ["proxy"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "proxy",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
