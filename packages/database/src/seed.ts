@@ -535,6 +535,27 @@ async function main() {
     },
   });
 
+  const state = await prisma.pattern.upsert({
+    where: { slug: "state" },
+    update: {
+      name: "State",
+      summary:
+        "Allows an object to alter its behavior when its internal state changes by delegating state-specific work to separate state objects.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "state",
+      name: "State",
+      summary:
+        "Allows an object to alter its behavior when its internal state changes by delegating state-specific work to separate state objects.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
