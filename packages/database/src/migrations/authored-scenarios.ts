@@ -786,4 +786,100 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "facade-checkout-workflow",
+    name: "Checkout workflow",
+    summary:
+      "Expose one order-placement operation that coordinates authentication, payment, inventory, and notification subsystems.",
+    problemStatement:
+      "A checkout client must complete an order without coordinating multiple subsystem APIs or depending directly on authentication, payment, inventory, and notification implementation details.",
+    patternSlugs: ["facade"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "facade",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "facade-video-conversion-pipeline",
+    name: "Video conversion pipeline",
+    summary:
+      "Wrap several media-processing steps behind one video conversion operation.",
+    problemStatement:
+      "A client must convert video without understanding or coordinating the individual decoding, transformation, encoding, and output steps of the media-processing subsystem.",
+    patternSlugs: ["facade"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "facade",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "facade-home-theater-startup",
+    name: "Home theater startup",
+    summary:
+      "Simplify a multi-device home-theater startup sequence into one watch-movie operation.",
+    problemStatement:
+      "A user must start a movie without manually coordinating the display, audio system, media player, and other home-theater devices in the correct order.",
+    patternSlugs: ["facade"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "facade",
+        scenarioIndex: 2,
+      },
+    ],
+  },
+  {
+    slug: "facade-account-onboarding",
+    name: "Account onboarding",
+    summary:
+      "Coordinate account creation, profile setup, email verification, and welcome messaging through one onboarding operation.",
+    problemStatement:
+      "An application must onboard a user through several coordinated services while presenting callers with one stable entry point instead of exposing every onboarding subsystem.",
+    patternSlugs: ["facade"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "facade",
+        scenarioIndex: 3,
+      },
+    ],
+  },
+  {
+    slug: "facade-report-generation",
+    name: "Report generation",
+    summary:
+      "Hide data collection, formatting, rendering, and delivery behind one report-generation operation.",
+    problemStatement:
+      "A client must generate and deliver a report without coordinating the underlying data collection, formatting, rendering, and delivery components.",
+    patternSlugs: ["facade"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "facade",
+        scenarioIndex: 4,
+      },
+    ],
+  },
+  {
+    slug: "facade-device-setup",
+    name: "Device setup",
+    summary:
+      "Run device pairing, configuration, and health checks through one setup operation.",
+    problemStatement:
+      "A client must prepare a device for use without knowing the sequence or APIs for pairing, configuration, and health-check subsystems.",
+    patternSlugs: ["facade"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "facade",
+        scenarioIndex: 5,
+      },
+    ],
+  },
 ];
