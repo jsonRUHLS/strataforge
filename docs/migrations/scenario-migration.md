@@ -77,6 +77,7 @@ Run seed again
 | Chain of Responsibility | 6 | 6 | Complete |
 | Command | 6 | 6 | Complete |
 | Composite | 6 | 6 | Complete |
+| Decorator | 8 | 8 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -142,6 +143,17 @@ Run seed again
 - `composite-permission-group-hierarchy`
 - `composite-scene-graph-composite`
 
+### Decorator
+
+- `decorator-notification-delivery`
+- `decorator-http-client`
+- `decorator-file-storage`
+- `decorator-text-formatting`
+- `decorator-coffee-customization`
+- `decorator-notification-channels`
+- `decorator-logging-metrics-and-tracing`
+- `decorator-ui-accessibility-enhancement`
+
 ## Validation
 
 Run:
@@ -180,6 +192,7 @@ Builder
 Chain of Responsibility
 Command
 Composite
+Decorator
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.

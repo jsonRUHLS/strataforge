@@ -283,6 +283,27 @@ async function main() {
     },
   });
 
+  const decorator = await prisma.pattern.upsert({
+    where: { slug: "decorator" },
+    update: {
+      name: "Decorator",
+      summary:
+        "Attaches additional behavior to an object dynamically by wrapping it with objects that implement the same interface.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "decorator",
+      name: "Decorator",
+      summary:
+        "Attaches additional behavior to an object dynamically by wrapping it with objects that implement the same interface.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
