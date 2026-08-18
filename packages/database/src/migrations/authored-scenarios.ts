@@ -1167,4 +1167,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "observer-stock-price-alerts",
+    name: "Stock price alerts",
+    summary:
+      "Notify dashboards and alert services whenever a tracked stock price changes.",
+    problemStatement:
+      "A market-data system must notify multiple independent consumers of stock-price changes without coupling the price source to concrete dashboard or alert implementations.",
+    patternSlugs: ["observer"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "observer",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "observer-order-status-notifications",
+    name: "Order status notifications",
+    summary:
+      "Broadcast order-status changes so email, warehouse, and analytics consumers react independently.",
+    problemStatement:
+      "An order system must notify multiple downstream concerns when order status changes without embedding email, warehouse, and analytics behavior in the order domain component.",
+    patternSlugs: ["observer"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "observer",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "observer-news-publisher",
+    name: "News publisher",
+    summary:
+      "Notify subscribers when a new article is published so applications and channels update automatically.",
+    problemStatement:
+      "A publishing system must inform a changing set of subscriber applications and delivery channels about new articles without coupling the publisher to each concrete subscriber.",
+    patternSlugs: ["observer"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "observer",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
