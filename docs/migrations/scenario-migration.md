@@ -85,6 +85,7 @@ Run seed again
 | Iterator | 3 | 3 | Complete |
 | Mediator | 3 | 3 | Complete |
 | Memento | 3 | 3 | Complete |
+| Observer | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -206,6 +207,12 @@ Run seed again
 - `memento-game-save-memento`
 - `memento-form-state-memento`
 
+### Observer
+
+- `observer-stock-price-alerts`
+- `observer-order-status-notifications`
+- `observer-news-publisher`
+
 ## Validation
 
 Run:
@@ -252,6 +259,7 @@ Interpreter
 Iterator
 Mediator
 Memento
+Observer
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.

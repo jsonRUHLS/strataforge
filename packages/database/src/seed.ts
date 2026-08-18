@@ -451,6 +451,27 @@ async function main() {
     },
   });
 
+  const observer = await prisma.pattern.upsert({
+    where: { slug: "observer" },
+    update: {
+      name: "Observer",
+      summary:
+        "Defines a subscription mechanism so a subject can notify multiple observers when its state changes or relevant events occur.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "observer",
+      name: "Observer",
+      summary:
+        "Defines a subscription mechanism so a subject can notify multiple observers when its state changes or relevant events occur.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
