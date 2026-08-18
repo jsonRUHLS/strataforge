@@ -1,5 +1,6 @@
 import { prisma } from "./client.js";
 import { authoredScenarioMigrations } from "./migrations/authored-scenarios.js";
+import { authoredPatternVariants } from "./migrations/authored-pattern-variants.js";
 
 async function requirePatternId(slug: string) {
   const pattern = await prisma.pattern.findUnique({
@@ -95,6 +96,48 @@ async function seedScenarios() {
   }
 }
 
+async function seedPatternVariants() {
+  for (const variant of authoredPatternVariants) {
+    const [pattern, coreLanguage] = await Promise.all([
+      prisma.pattern.findUniqueOrThrow({
+        where: { slug: variant.patternSlug },
+        select: { id: true },
+      }),
+      prisma.coreLanguage.findUniqueOrThrow({
+        where: { slug: variant.coreLanguageSlug },
+        select: { id: true },
+      }),
+    ]);
+
+    await prisma.patternVariant.upsert({
+      where: { slug: variant.slug },
+      update: {
+        patternId: pattern.id,
+        coreLanguageId: coreLanguage.id,
+        technologyId: null,
+        title: variant.title,
+        summary: variant.summary,
+        layer: variant.layer,
+        code: variant.code,
+      },
+      create: {
+        slug: variant.slug,
+        patternId: pattern.id,
+        coreLanguageId: coreLanguage.id,
+        technologyId: null,
+        title: variant.title,
+        summary: variant.summary,
+        layer: variant.layer,
+        code: variant.code,
+      },
+    });
+
+    console.log(
+      `[seed] Pattern variant "${variant.slug}" linked to pattern "${variant.patternSlug}" and language "${variant.coreLanguageSlug}".`,
+    );
+  }
+}
+
 async function main() {
   const typescript = await prisma.coreLanguage.upsert({
     where: { slug: "typescript" },
@@ -111,7 +154,7 @@ async function main() {
     },
   });
 
-  const adapter = await prisma.pattern.upsert({
+  await prisma.pattern.upsert({
     where: { slug: "adapter" },
     update: {
       name: "Adapter",
@@ -129,31 +172,6 @@ async function main() {
       category: "Structural",
       layer: "Application",
       status: "ACTIVE",
-    },
-  });
-
-  await prisma.patternVariant.upsert({
-    where: { slug: "adapter-typescript" },
-    update: {
-      patternId: adapter.id,
-      coreLanguageId: typescript.id,
-      title: "Adapter in TypeScript",
-      summary: "A TypeScript implementation of the Adapter pattern.",
-      layer: "Application",
-      code: `export interface TaskProvider {
-  getTask(id: string): Promise<Task>;
-}`,
-    },
-    create: {
-      slug: "adapter-typescript",
-      patternId: adapter.id,
-      coreLanguageId: typescript.id,
-      title: "Adapter in TypeScript",
-      summary: "A TypeScript implementation of the Adapter pattern.",
-      layer: "Application",
-      code: `export interface TaskProvider {
-  getTask(id: string): Promise<Task>;
-}`,
     },
   });
 
@@ -556,7 +574,7 @@ async function main() {
     },
   });
 
-  const strategy = await prisma.pattern.upsert({
+  await prisma.pattern.upsert({
     where: { slug: "strategy" },
     update: {
       name: "Strategy",
@@ -577,7 +595,7 @@ async function main() {
     },
   });
 
-  const templateMethod = await prisma.pattern.upsert({
+  await prisma.pattern.upsert({
     where: { slug: "template-method" },
     update: {
       name: "Template Method",
@@ -598,7 +616,7 @@ async function main() {
     },
   });
 
-  const visitor = await prisma.pattern.upsert({
+  await prisma.pattern.upsert({
     where: { slug: "visitor" },
     update: {
       name: "Visitor",
@@ -616,245 +634,6 @@ async function main() {
       category: "Behavioral",
       layer: "Application",
       status: "ACTIVE",
-    },
-  });
-
-  await prisma.patternVariant.upsert({
-    where: { slug: "strategy-typescript-payment-methods" },
-    update: {
-      patternId: strategy.id,
-      coreLanguageId: typescript.id,
-      technologyId: null,
-      title: "TypeScript payment method strategies",
-      summary:
-        "Encapsulates card and PayPal payment behavior behind a shared interface so checkout selects a payment algorithm without branching through each method.",
-      layer: "Application",
-      code: `interface PaymentStrategy {
-  pay(amountInCents: number): Promise<void>;
-}
-
-class CardPayment implements PaymentStrategy {
-  async pay(amountInCents: number) {
-    console.log(\`Charging card for \${amountInCents} cents\`);
-  }
-}
-
-class PayPalPayment implements PaymentStrategy {
-  async pay(amountInCents: number) {
-    console.log(\`Charging PayPal for \${amountInCents} cents\`);
-  }
-}
-
-class CheckoutService {
-  constructor(private readonly paymentStrategy: PaymentStrategy) {}
-
-  checkout(amountInCents: number) {
-    return this.paymentStrategy.pay(amountInCents);
-  }
-}`,
-    },
-    create: {
-      slug: "strategy-typescript-payment-methods",
-      patternId: strategy.id,
-      coreLanguageId: typescript.id,
-      technologyId: null,
-      title: "TypeScript payment method strategies",
-      summary:
-        "Encapsulates card and PayPal payment behavior behind a shared interface so checkout selects a payment algorithm without branching through each method.",
-      layer: "Application",
-      code: `interface PaymentStrategy {
-  pay(amountInCents: number): Promise<void>;
-}
-
-class CardPayment implements PaymentStrategy {
-  async pay(amountInCents: number) {
-    console.log(\`Charging card for \${amountInCents} cents\`);
-  }
-}
-
-class PayPalPayment implements PaymentStrategy {
-  async pay(amountInCents: number) {
-    console.log(\`Charging PayPal for \${amountInCents} cents\`);
-  }
-}
-
-class CheckoutService {
-  constructor(private readonly paymentStrategy: PaymentStrategy) {}
-
-  checkout(amountInCents: number) {
-    return this.paymentStrategy.pay(amountInCents);
-  }
-}`,
-    },
-  });
-
-  await prisma.patternVariant.upsert({
-    where: { slug: "template-method-typescript-order-processing" },
-    update: {
-      patternId: templateMethod.id,
-      coreLanguageId: typescript.id,
-      technologyId: null,
-      title: "TypeScript order processing template",
-      summary:
-        "Keeps the order-processing sequence fixed while subclasses customize validation and fulfillment for different order types.",
-      layer: "Application",
-      code: `abstract class OrderProcessor {
-  async process(orderId: string) {
-    await this.validate(orderId);
-    await this.reserveInventory(orderId);
-    await this.fulfill(orderId);
-  }
-
-  protected abstract validate(orderId: string): Promise<void>;
-
-  protected async reserveInventory(orderId: string) {
-    console.log(\`Reserving inventory for \${orderId}\`);
-  }
-
-  protected abstract fulfill(orderId: string): Promise<void>;
-}
-
-class DigitalOrderProcessor extends OrderProcessor {
-  protected async validate(orderId: string) {
-    console.log(\`Validating digital order \${orderId}\`);
-  }
-
-  protected async fulfill(orderId: string) {
-    console.log(\`Emailing download link for \${orderId}\`);
-  }
-}`,
-    },
-    create: {
-      slug: "template-method-typescript-order-processing",
-      patternId: templateMethod.id,
-      coreLanguageId: typescript.id,
-      technologyId: null,
-      title: "TypeScript order processing template",
-      summary:
-        "Keeps the order-processing sequence fixed while subclasses customize validation and fulfillment for different order types.",
-      layer: "Application",
-      code: `abstract class OrderProcessor {
-  async process(orderId: string) {
-    await this.validate(orderId);
-    await this.reserveInventory(orderId);
-    await this.fulfill(orderId);
-  }
-
-  protected abstract validate(orderId: string): Promise<void>;
-
-  protected async reserveInventory(orderId: string) {
-    console.log(\`Reserving inventory for \${orderId}\`);
-  }
-
-  protected abstract fulfill(orderId: string): Promise<void>;
-}
-
-class DigitalOrderProcessor extends OrderProcessor {
-  protected async validate(orderId: string) {
-    console.log(\`Validating digital order \${orderId}\`);
-  }
-
-  protected async fulfill(orderId: string) {
-    console.log(\`Emailing download link for \${orderId}\`);
-  }
-}`,
-    },
-  });
-
-  await prisma.patternVariant.upsert({
-    where: { slug: "visitor-typescript-shape-operations" },
-    update: {
-      patternId: visitor.id,
-      coreLanguageId: typescript.id,
-      technologyId: null,
-      title: "TypeScript shape operation visitors",
-      summary:
-        "Moves rendering and measurement operations into visitors so shape classes remain stable when new operations are introduced.",
-      layer: "Application",
-      code: `interface ShapeVisitor<Result> {
-  visitCircle(circle: Circle): Result;
-  visitRectangle(rectangle: Rectangle): Result;
-}
-
-interface Shape {
-  accept<Result>(visitor: ShapeVisitor<Result>): Result;
-}
-
-class Circle implements Shape {
-  constructor(readonly radius: number) {}
-
-  accept<Result>(visitor: ShapeVisitor<Result>) {
-    return visitor.visitCircle(this);
-  }
-}
-
-class Rectangle implements Shape {
-  constructor(
-    readonly width: number,
-    readonly height: number,
-  ) {}
-
-  accept<Result>(visitor: ShapeVisitor<Result>) {
-    return visitor.visitRectangle(this);
-  }
-}
-
-class AreaVisitor implements ShapeVisitor<number> {
-  visitCircle(circle: Circle) {
-    return Math.PI * circle.radius ** 2;
-  }
-
-  visitRectangle(rectangle: Rectangle) {
-    return rectangle.width * rectangle.height;
-  }
-}`,
-    },
-    create: {
-      slug: "visitor-typescript-shape-operations",
-      patternId: visitor.id,
-      coreLanguageId: typescript.id,
-      technologyId: null,
-      title: "TypeScript shape operation visitors",
-      summary:
-        "Moves rendering and measurement operations into visitors so shape classes remain stable when new operations are introduced.",
-      layer: "Application",
-      code: `interface ShapeVisitor<Result> {
-  visitCircle(circle: Circle): Result;
-  visitRectangle(rectangle: Rectangle): Result;
-}
-
-interface Shape {
-  accept<Result>(visitor: ShapeVisitor<Result>): Result;
-}
-
-class Circle implements Shape {
-  constructor(readonly radius: number) {}
-
-  accept<Result>(visitor: ShapeVisitor<Result>) {
-    return visitor.visitCircle(this);
-  }
-}
-
-class Rectangle implements Shape {
-  constructor(
-    readonly width: number,
-    readonly height: number,
-  ) {}
-
-  accept<Result>(visitor: ShapeVisitor<Result>) {
-    return visitor.visitRectangle(this);
-  }
-}
-
-class AreaVisitor implements ShapeVisitor<number> {
-  visitCircle(circle: Circle) {
-    return Math.PI * circle.radius ** 2;
-  }
-
-  visitRectangle(rectangle: Rectangle) {
-    return rectangle.width * rectangle.height;
-  }
-}`,
     },
   });
 
@@ -959,6 +738,7 @@ class AreaVisitor implements ShapeVisitor<number> {
     }),
   ]);
 
+  await seedPatternVariants();
   await seedScenarios();
 
   console.log("Catalog seed completed.");
