@@ -930,4 +930,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "flyweight-tree-rendering-flyweight",
+    name: "Tree rendering flyweight",
+    summary:
+      "Share tree-type data across many tree instances to reduce memory use in a forest renderer.",
+    problemStatement:
+      "A forest renderer must represent many trees efficiently by sharing repeated type data such as appearance and species while storing only instance-specific state such as position separately.",
+    patternSlugs: ["flyweight"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "flyweight",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "flyweight-text-formatting-flyweight",
+    name: "Text formatting flyweight",
+    summary:
+      "Reuse character-style objects across many glyphs while keeping position and content-specific state separate.",
+    problemStatement:
+      "A text editor must render large volumes of styled glyphs without duplicating shared character-style data for every occurrence, while retaining each glyph's unique content and position.",
+    patternSlugs: ["flyweight"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "flyweight",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "flyweight-game-tile-flyweight",
+    name: "Game tile flyweight",
+    summary:
+      "Reuse terrain definitions while map tiles retain only coordinates and local effects.",
+    problemStatement:
+      "A tile-based game must represent large maps efficiently by sharing immutable terrain definitions across tiles while storing only location-specific and local-effect state on each tile.",
+    patternSlugs: ["flyweight"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "flyweight",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];

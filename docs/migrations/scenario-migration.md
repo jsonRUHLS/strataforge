@@ -80,6 +80,7 @@ Run seed again
 | Decorator | 8 | 8 | Complete |
 | Facade | 6 | 6 | Complete |
 | Factory Method | 3 | 3 | Complete |
+| Flyweight | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -171,6 +172,12 @@ Run seed again
 - `factory-method-notification-channel`
 - `factory-method-logger-transport`
 
+### Flyweight
+
+- `flyweight-tree-rendering-flyweight`
+- `flyweight-text-formatting-flyweight`
+- `flyweight-game-tile-flyweight`
+
 ## Validation
 
 Run:
@@ -212,6 +219,7 @@ Composite
 Decorator
 Facade
 Factory Method
+Flyweight
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.
