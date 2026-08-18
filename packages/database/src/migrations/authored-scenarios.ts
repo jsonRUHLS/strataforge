@@ -1359,4 +1359,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "state-order-state",
+    name: "Order state",
+    summary:
+      "Change order behavior as an order moves from pending to processing to shipped.",
+    problemStatement:
+      "An order workflow must enforce state-specific actions and valid transitions without centralizing growing conditional logic for every order status in the order object.",
+    patternSlugs: ["state"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "state",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "state-traffic-light-state",
+    name: "Traffic light state",
+    summary:
+      "Change traffic-light behavior according to whether the light is red, yellow, or green.",
+    problemStatement:
+      "A traffic-control system must perform different actions and transitions for each light phase without embedding all phase-specific behavior in one conditional-heavy controller.",
+    patternSlugs: ["state"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "state",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "state-media-player-state",
+    name: "Media player state",
+    summary:
+      "Change media-player behavior when playback is playing, paused, or stopped.",
+    problemStatement:
+      "A media player must handle commands differently based on its playback state while keeping state-specific behavior and transitions independent of the core player context.",
+    patternSlugs: ["state"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "state",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
