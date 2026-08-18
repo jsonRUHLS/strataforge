@@ -388,6 +388,27 @@ async function main() {
     },
   });
 
+  const iterator = await prisma.pattern.upsert({
+    where: { slug: "iterator" },
+    update: {
+      name: "Iterator",
+      summary:
+        "Provides a way to traverse elements of a collection sequentially without exposing its underlying representation.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "iterator",
+      name: "Iterator",
+      summary:
+        "Provides a way to traverse elements of a collection sequentially without exposing its underlying representation.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },

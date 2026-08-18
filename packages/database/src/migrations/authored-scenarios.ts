@@ -1026,4 +1026,51 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "iterator-playlist-iterator",
+    name: "Playlist iterator",
+    summary: "Expose playlist songs one at a time through a custom iterator.",
+    problemStatement:
+      "A music application must traverse playlist songs sequentially without exposing the playlist's internal storage structure or placing traversal state in client code.",
+    patternSlugs: ["iterator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "iterator",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "iterator-pagination-iterator",
+    name: "Pagination iterator",
+    summary:
+      "Walk through paginated data without revealing how pages are stored or retrieved.",
+    problemStatement:
+      "A client must consume items across multiple data pages without coupling its traversal logic to the underlying pagination, storage, or retrieval implementation.",
+    patternSlugs: ["iterator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "iterator",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "iterator-tree-traversal-iterator",
+    name: "Tree traversal iterator",
+    summary:
+      "Traverse a tree in order without exposing its internal node structure.",
+    problemStatement:
+      "A client must traverse a tree in a defined order without depending on node links, recursion details, or the internal representation of the tree.",
+    patternSlugs: ["iterator"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "iterator",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
