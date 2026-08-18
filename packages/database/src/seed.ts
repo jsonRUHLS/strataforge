@@ -325,6 +325,27 @@ async function main() {
     },
   });
 
+  const factoryMethod = await prisma.pattern.upsert({
+    where: { slug: "factory-method" },
+    update: {
+      name: "Factory Method",
+      summary:
+        "Defines an interface for creating an object while allowing subclasses or specialized creators to determine the concrete product that is returned.",
+      category: "Creational",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "factory-method",
+      name: "Factory Method",
+      summary:
+        "Defines an interface for creating an object while allowing subclasses or specialized creators to determine the concrete product that is returned.",
+      category: "Creational",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
