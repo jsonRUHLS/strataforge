@@ -200,7 +200,11 @@ class SmsNotificationCreator extends NotificationCreator {
 }
 
 const creator = new EmailNotificationCreator();
-await creator.notify("team@example.com", "Deployment completed.");`,
+
+void creator.notify(
+  "team@example.com",
+  "Deployment completed.",
+);`,
   },
   {
     slug: "prototype-typescript",
