@@ -1455,4 +1455,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "template-method-order-processing-template",
+    name: "Order processing template",
+    summary:
+      "Use one high-level order-processing sequence while varying validation and fulfillment details by order type.",
+    problemStatement:
+      "An order system must preserve a consistent processing sequence while allowing order-type-specific validation and fulfillment steps to vary without duplicating the shared workflow.",
+    patternSlugs: ["template-method"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "template-method",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "template-method-report-generation-template",
+    name: "Report generation template",
+    summary:
+      "Use one report-generation flow while different report types customize data collection and formatting.",
+    problemStatement:
+      "A reporting system must keep its common generation sequence stable while allowing report types to customize selected steps such as data collection and formatting.",
+    patternSlugs: ["template-method"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "template-method",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "template-method-data-import-template",
+    name: "Data import template",
+    summary:
+      "Use a standard import pipeline while file formats customize parsing and validation.",
+    problemStatement:
+      "A data-import system must preserve one processing pipeline while allowing format-specific parsing and validation steps to vary without duplicating common import behavior.",
+    patternSlugs: ["template-method"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "template-method",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
