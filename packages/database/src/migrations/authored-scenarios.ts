@@ -978,4 +978,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "interpreter-expression-interpreter",
+    name: "Expression interpreter",
+    summary:
+      "Represent an arithmetic expression as terminal and non-terminal expression nodes and evaluate the resulting tree.",
+    problemStatement:
+      "An application must evaluate arithmetic expressions with a defined grammar while keeping the meaning of numbers and operators separate from the client that constructs and evaluates the expression tree.",
+    patternSlugs: ["interpreter"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "interpreter",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "interpreter-boolean-rule-interpreter",
+    name: "Boolean rule interpreter",
+    summary:
+      "Interpret boolean conditions against a context object in a simple rules engine.",
+    problemStatement:
+      "A rules engine must represent and evaluate composable boolean conditions against varying contextual data without embedding every rule combination directly in the calling application.",
+    patternSlugs: ["interpreter"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "interpreter",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "interpreter-command-interpreter",
+    name: "Command interpreter",
+    summary:
+      "Parse a command string into operations that an interpreter executes in order.",
+    problemStatement:
+      "An application must parse and execute a command language with defined syntax while keeping command grammar and execution behavior separate from the client that supplies command strings.",
+    patternSlugs: ["interpreter"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "interpreter",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
