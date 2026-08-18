@@ -92,6 +92,7 @@ Run seed again
 | State | 3 | 3 | Complete |
 | Strategy | 3 | 3 | Complete |
 | Template Method | 3 | 3 | Complete |
+| Visitor | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -255,6 +256,12 @@ Run seed again
 - `template-method-report-generation-template`
 - `template-method-data-import-template`
 
+### Visitor
+
+- `visitor-shape-visitor`
+- `visitor-cart-visitor`
+- `visitor-document-visitor`
+
 ## Validation
 
 Run:
@@ -308,6 +315,7 @@ Singleton
 State
 Strategy
 Template Method
+Visitor
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.

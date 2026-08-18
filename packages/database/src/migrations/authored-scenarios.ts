@@ -1503,4 +1503,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "visitor-shape-visitor",
+    name: "Shape visitor",
+    summary:
+      "Apply rendering or measurement operations to shapes without changing the shape classes.",
+    problemStatement:
+      "A graphics system needs to render and measure multiple shape types while keeping those operations separate from the stable shape hierarchy.",
+    patternSlugs: ["visitor"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "visitor",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "visitor-cart-visitor",
+    name: "Cart visitor",
+    summary:
+      "Calculate pricing and discounts across cart item types without coupling pricing behavior to products.",
+    problemStatement:
+      "A shopping cart must apply pricing and discount calculations across different product types while allowing new calculations to be introduced without modifying each item class.",
+    patternSlugs: ["visitor"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "visitor",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "visitor-document-visitor",
+    name: "Document visitor",
+    summary:
+      "Export or inspect document nodes while keeping those operations outside the document-node classes.",
+    problemStatement:
+      "A document system must support operations such as export and inspection across node types without coupling every new operation to the document-node hierarchy.",
+    patternSlugs: ["visitor"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "visitor",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
