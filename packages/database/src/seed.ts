@@ -556,6 +556,27 @@ async function main() {
     },
   });
 
+  const strategy = await prisma.pattern.upsert({
+    where: { slug: "strategy" },
+    update: {
+      name: "Strategy",
+      summary:
+        "Defines a family of interchangeable algorithms and delegates behavior to the selected strategy without changing the context that uses it.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "strategy",
+      name: "Strategy",
+      summary:
+        "Defines a family of interchangeable algorithms and delegates behavior to the selected strategy without changing the context that uses it.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },

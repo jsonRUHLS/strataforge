@@ -1407,4 +1407,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "strategy-payment-processing",
+    name: "Payment processing",
+    summary:
+      "Delegate payment behavior to a selected strategy while keeping the checkout flow stable.",
+    problemStatement:
+      "A checkout flow must support interchangeable payment methods without embedding payment-provider-specific behavior or branching logic in the common order-processing workflow.",
+    patternSlugs: ["strategy"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "strategy",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "strategy-shipping-cost-calculation",
+    name: "Shipping cost calculation",
+    summary:
+      "Choose a shipping-cost algorithm by delivery type without one large conditional block.",
+    problemStatement:
+      "An order service must calculate shipping with interchangeable delivery-pricing algorithms without centralizing all delivery-type rules in a growing conditional structure.",
+    patternSlugs: ["strategy"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "strategy",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "strategy-notification-delivery",
+    name: "Notification delivery",
+    summary:
+      "Select a delivery-channel strategy without requiring callers to manage channel-specific branching.",
+    problemStatement:
+      "A notification service must deliver messages through interchangeable channels while keeping callers independent of channel-specific routing and delivery behavior.",
+    patternSlugs: ["strategy"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "strategy",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];

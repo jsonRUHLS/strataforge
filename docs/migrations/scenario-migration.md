@@ -90,6 +90,7 @@ Run seed again
 | Proxy | 3 | 3 | Complete |
 | Singleton | 3 | 3 | Complete |
 | State | 3 | 3 | Complete |
+| Strategy | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -241,6 +242,12 @@ Run seed again
 - `state-traffic-light-state`
 - `state-media-player-state`
 
+### Strategy
+
+- `strategy-payment-processing`
+- `strategy-shipping-cost-calculation`
+- `strategy-notification-delivery`
+
 ## Validation
 
 Run:
@@ -292,6 +299,7 @@ Prototype
 Proxy
 Singleton
 State
+Strategy
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.
