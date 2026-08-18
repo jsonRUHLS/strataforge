@@ -370,4 +370,100 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "chain-of-responsibility-password-validation-chain",
+    name: "Password validation chain",
+    summary:
+      "Pass a password through several validation rules before accepting it.",
+    problemStatement:
+      "A system must evaluate password requirements in a defined sequence while keeping individual validation rules independent and allowing the validation pipeline to change without coupling the caller to every rule.",
+    patternSlugs: ["chain-of-responsibility"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "chain-of-responsibility",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "chain-of-responsibility-support-ticket-chain",
+    name: "Support ticket chain",
+    summary:
+      "Route a support ticket through handlers until the appropriate support level processes it.",
+    problemStatement:
+      "A support system must escalate or route tickets to the appropriate support level without requiring the ticket sender to know which team or handler can resolve each request.",
+    patternSlugs: ["chain-of-responsibility"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "chain-of-responsibility",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "chain-of-responsibility-approval-workflow-chain",
+    name: "Approval workflow chain",
+    summary:
+      "Pass an expense request through approvers according to amount and policy constraints.",
+    problemStatement:
+      "An expense workflow must route requests through the necessary approvers based on changing limits and policies while avoiding a caller that is tightly coupled to every approval level.",
+    patternSlugs: ["chain-of-responsibility"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "chain-of-responsibility",
+        scenarioIndex: 2,
+      },
+    ],
+  },
+  {
+    slug: "chain-of-responsibility-request-middleware-chain",
+    name: "Request middleware chain",
+    summary:
+      "Process a web request through logging, authentication, rate-limiting, and transformation handlers.",
+    problemStatement:
+      "A web application must apply ordered cross-cutting request processing while allowing handlers to short-circuit, delegate, or be composed without centralizing every decision in the request entry point.",
+    patternSlugs: ["chain-of-responsibility"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "chain-of-responsibility",
+        scenarioIndex: 3,
+      },
+    ],
+  },
+  {
+    slug: "chain-of-responsibility-notification-routing-chain",
+    name: "Notification routing chain",
+    summary:
+      "Route a message through preference checks, channel selection, and fallback handlers.",
+    problemStatement:
+      "A notification system must evaluate recipient preferences, select an available delivery channel, and fall back when necessary without coupling message producers to all routing and delivery rules.",
+    patternSlugs: ["chain-of-responsibility"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "chain-of-responsibility",
+        scenarioIndex: 4,
+      },
+    ],
+  },
+  {
+    slug: "chain-of-responsibility-form-command-chain",
+    name: "Form command chain",
+    summary:
+      "Check a form submission with sanitization, validation, and policy handlers before saving it.",
+    problemStatement:
+      "A form workflow must apply ordered preprocessing and policy checks before persistence, with each handler able to reject invalid input or pass a valid submission to the next stage.",
+    patternSlugs: ["chain-of-responsibility"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "chain-of-responsibility",
+        scenarioIndex: 5,
+      },
+    ],
+  },
 ];

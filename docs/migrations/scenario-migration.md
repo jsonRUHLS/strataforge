@@ -74,6 +74,7 @@ Run seed again
 | Adapter | 3 | 3 | Complete |
 | Bridge | 6 | 6 | Complete |
 | Builder | 7 | 7 | Complete |
+| Chain of Responsibility | 6 | 6 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -112,6 +113,15 @@ Run seed again
 - `builder-character-creation`
 - `builder-pizza-order-construction`
 
+### Chain of Responsibility
+
+- `chain-of-responsibility-password-validation-chain`
+- `chain-of-responsibility-support-ticket-chain`
+- `chain-of-responsibility-approval-workflow-chain`
+- `chain-of-responsibility-request-middleware-chain`
+- `chain-of-responsibility-notification-routing-chain`
+- `chain-of-responsibility-form-command-chain`
+
 ## Validation
 
 Run:
@@ -147,6 +157,7 @@ Abstract Factory
 Adapter
 Bridge
 Builder
+Chain of Responsibility
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.

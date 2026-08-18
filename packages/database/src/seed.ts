@@ -220,6 +220,27 @@ async function main() {
     },
   });
 
+  const chainOfResponsibility = await prisma.pattern.upsert({
+    where: { slug: "chain-of-responsibility" },
+    update: {
+      name: "Chain of Responsibility",
+      summary:
+        "Passes a request along a chain of handlers until one handles it, allowing senders and receivers to remain decoupled.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "chain-of-responsibility",
+      name: "Chain of Responsibility",
+      summary:
+        "Passes a request along a chain of handlers until one handles it, allowing senders and receivers to remain decoupled.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
