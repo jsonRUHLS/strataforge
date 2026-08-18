@@ -79,6 +79,7 @@ Run seed again
 | Composite | 6 | 6 | Complete |
 | Decorator | 8 | 8 | Complete |
 | Facade | 6 | 6 | Complete |
+| Factory Method | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -164,6 +165,12 @@ Run seed again
 - `facade-report-generation`
 - `facade-device-setup`
 
+### Factory Method
+
+- `factory-method-document-export`
+- `factory-method-notification-channel`
+- `factory-method-logger-transport`
+
 ## Validation
 
 Run:
@@ -204,6 +211,7 @@ Command
 Composite
 Decorator
 Facade
+Factory Method
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.

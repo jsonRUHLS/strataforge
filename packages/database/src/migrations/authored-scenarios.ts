@@ -882,4 +882,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "factory-method-document-export",
+    name: "Document export",
+    summary:
+      "Choose an exporter for PDF, CSV, or other output formats while keeping the reporting workflow consistent.",
+    problemStatement:
+      "A reporting workflow must produce multiple output formats without coupling its common export flow to the concrete implementation of each format-specific exporter.",
+    patternSlugs: ["factory-method"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "factory-method",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "factory-method-notification-channel",
+    name: "Notification channel",
+    summary:
+      "Create channel-specific email, SMS, or push senders without changing the notification workflow.",
+    problemStatement:
+      "A notification workflow must use interchangeable delivery-channel implementations without directly constructing or depending on every concrete sender type.",
+    patternSlugs: ["factory-method"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "factory-method",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "factory-method-logger-transport",
+    name: "Logger transport",
+    summary:
+      "Select console, file, or remote logger transports through specialized creators for different environments.",
+    problemStatement:
+      "An application must select an environment-appropriate logger implementation without scattering concrete transport construction throughout application code.",
+    patternSlugs: ["factory-method"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "factory-method",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
