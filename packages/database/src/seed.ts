@@ -241,6 +241,27 @@ async function main() {
     },
   });
 
+  const command = await prisma.pattern.upsert({
+    where: { slug: "command" },
+    update: {
+      name: "Command",
+      summary:
+        "Encapsulates a request as an object so it can be parameterized, queued, logged, executed later, or undone.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "command",
+      name: "Command",
+      summary:
+        "Encapsulates a request as an object so it can be parameterized, queued, logged, executed later, or undone.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
