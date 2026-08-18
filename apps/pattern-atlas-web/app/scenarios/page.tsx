@@ -27,8 +27,7 @@ export default async function ScenariosPage() {
       ) : scenarios.length === 0 ? (
         <SectionCard title="No catalog scenarios yet">
           <p>
-            The catalog is connected, but it does not contain any scenarios
-            yet.
+            The catalog is connected, but it does not contain any scenarios yet.
           </p>
         </SectionCard>
       ) : (
@@ -38,14 +37,9 @@ export default async function ScenariosPage() {
               <p>{scenario.summary}</p>
 
               <div className="panel-meta">
-                <Tag>Catalog DB</Tag>
-
-                <Tag>
-                  {scenario._count.patternLinks}{" "}
-                  {scenario._count.patternLinks === 1
-                    ? "pattern"
-                    : "patterns"}
-                </Tag>
+                {scenario.patternLinks.map(({ pattern }) => (
+                  <Tag key={pattern.id}>{pattern.name}</Tag>
+                ))}
 
                 <Tag>
                   {scenario._count.technologyLinks}{" "}

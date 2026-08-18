@@ -105,9 +105,24 @@ export async function listScenarios() {
       slug: true,
       name: true,
       summary: true,
+      patternLinks: {
+        select: {
+          pattern: {
+            select: {
+              id: true,
+              slug: true,
+              name: true,
+            },
+          },
+        },
+        orderBy: {
+          pattern: {
+            name: "asc",
+          },
+        },
+      },
       _count: {
         select: {
-          patternLinks: true,
           technologyLinks: true,
         },
       },
