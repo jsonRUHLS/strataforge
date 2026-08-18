@@ -514,6 +514,27 @@ async function main() {
     },
   });
 
+  const singleton = await prisma.pattern.upsert({
+    where: { slug: "singleton" },
+    update: {
+      name: "Singleton",
+      summary:
+        "Ensures a class has only one instance and provides a controlled global access point to that shared instance.",
+      category: "Creational",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "singleton",
+      name: "Singleton",
+      summary:
+        "Ensures a class has only one instance and provides a controlled global access point to that shared instance.",
+      category: "Creational",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },

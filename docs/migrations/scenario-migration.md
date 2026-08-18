@@ -88,6 +88,7 @@ Run seed again
 | Observer | 3 | 3 | Complete |
 | Prototype | 3 | 3 | Complete |
 | Proxy | 3 | 3 | Complete |
+| Singleton | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -227,6 +228,12 @@ Run seed again
 - `proxy-access-control-proxy`
 - `proxy-remote-service-proxy`
 
+### Singleton
+
+- `singleton-application-config-singleton`
+- `singleton-logger-singleton`
+- `singleton-cache-manager-singleton`
+
 ## Validation
 
 Run:
@@ -276,6 +283,7 @@ Memento
 Observer
 Prototype
 Proxy
+Singleton
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.

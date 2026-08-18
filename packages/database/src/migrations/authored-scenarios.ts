@@ -1311,4 +1311,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "singleton-application-config-singleton",
+    name: "Application config singleton",
+    summary:
+      "Load environment settings once and serve the same shared configuration throughout the application.",
+    problemStatement:
+      "An application must provide a consistent configuration source across components without repeatedly loading environment settings or allowing conflicting configuration instances.",
+    patternSlugs: ["singleton"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "singleton",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "singleton-logger-singleton",
+    name: "Logger singleton",
+    summary:
+      "Use one shared logger instance so every component writes through the same output pipeline.",
+    problemStatement:
+      "An application must provide a consistent logging pipeline across components without creating competing logger instances or scattering output configuration throughout the codebase.",
+    patternSlugs: ["singleton"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "singleton",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "singleton-cache-manager-singleton",
+    name: "Cache manager singleton",
+    summary:
+      "Maintain one shared in-memory cache so all application components reuse the same stored data.",
+    problemStatement:
+      "An application must coordinate access to one shared in-memory cache without creating separate cache instances that duplicate data or produce inconsistent cached values.",
+    patternSlugs: ["singleton"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "singleton",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
