@@ -178,6 +178,27 @@ async function main() {
     },
   });
 
+  const bridge = await prisma.pattern.upsert({
+    where: { slug: "bridge" },
+    update: {
+      name: "Bridge",
+      summary:
+        "Decouples an abstraction from its implementation so both can vary independently.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "bridge",
+      name: "Bridge",
+      summary:
+        "Decouples an abstraction from its implementation so both can vary independently.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },

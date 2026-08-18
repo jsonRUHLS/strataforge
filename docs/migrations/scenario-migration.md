@@ -72,15 +72,10 @@ Run seed again
 |---|---:|---:|---|
 | Adapter | 3 | 3 | Complete |
 | Abstract Factory | 6 | 6 | Complete |
+| Bridge | 6 | 6 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
-
-### Adapter
-
-- `adapter-legacy-payment-gateway`
-- `third-party-task-api`
-- `adapter-event-payload-mapper`
 
 ### Abstract Factory
 
@@ -90,6 +85,21 @@ Run seed again
 - `abstract-factory-document-suite`
 - `abstract-factory-device-os-kit`
 - `abstract-factory-analytics-stack-kit`
+
+### Adapter
+
+- `adapter-legacy-payment-gateway`
+- `third-party-task-api`
+- `adapter-event-payload-mapper`
+  
+### Bridge
+
+- `bridge-data-source-abstraction`
+- `bridge-notification-delivery`
+- `bridge-payment-routing`
+- `bridge-printer-driver-layer`
+- `bridge-remote-control-bridge`
+- `bridge-shape-renderer-bridge`
 
 ## Validation
 
@@ -117,4 +127,14 @@ Verify in the application:
 
 ## Next batch
 
-Seed the next catalog pattern and migrate only the authored scenarios associated with that pattern. Keep each pattern family or small batch in a separate pull request.
+Select the next pattern from `docs/migrations/scenario-inventory.json`, seed its catalog Pattern record, and migrate only the authored scenarios associated with that pattern.
+
+Completed pattern batches:
+
+```text
+Adapter
+Abstract Factory
+Bridge
+```
+
+Keep each pattern or small pattern-family batch in a separate pull request.
