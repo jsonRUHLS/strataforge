@@ -93,6 +93,84 @@ function renderSettings(factory: UiFactory) {
 }`,
   },
   {
+    slug: "bridge-typescript",
+    patternSlug: "bridge",
+    coreLanguageSlug: "typescript",
+    title: "Bridge in TypeScript",
+    summary:
+      "Separates remote-control behavior from device implementations so remotes and devices can evolve independently.",
+    layer: "Application",
+    code: `interface Device {
+  enable(): void;
+  disable(): void;
+  isEnabled(): boolean;
+  setVolume(percent: number): void;
+}
+
+class Television implements Device {
+  private enabled = false;
+
+  enable() {
+    this.enabled = true;
+  }
+
+  disable() {
+    this.enabled = false;
+  }
+
+  isEnabled() {
+    return this.enabled;
+  }
+
+  setVolume(percent: number) {
+    console.log(\`TV volume set to \${percent}%\`);
+  }
+}
+
+class Speaker implements Device {
+  private enabled = false;
+
+  enable() {
+    this.enabled = true;
+  }
+
+  disable() {
+    this.enabled = false;
+  }
+
+  isEnabled() {
+    return this.enabled;
+  }
+
+  setVolume(percent: number) {
+    console.log(\`Speaker volume set to \${percent}%\`);
+  }
+}
+
+class RemoteControl {
+  constructor(protected readonly device: Device) {}
+
+  togglePower() {
+    if (this.device.isEnabled()) {
+      this.device.disable();
+    } else {
+      this.device.enable();
+    }
+  }
+}
+
+class VolumeRemoteControl extends RemoteControl {
+  volumeUp() {
+    this.device.setVolume(70);
+  }
+}
+
+const remote = new VolumeRemoteControl(new Speaker());
+
+remote.togglePower();
+remote.volumeUp();`,
+  },
+  {
     slug: "builder-typescript",
     patternSlug: "builder",
     coreLanguageSlug: "typescript",
@@ -155,6 +233,182 @@ const productionConfig = new DeploymentConfigBuilder()
   .build();`,
   },
   {
+    slug: "composite-typescript",
+    patternSlug: "composite",
+    coreLanguageSlug: "typescript",
+    title: "Composite in TypeScript",
+    summary:
+      "Represents files and folders through one interface so callers can calculate the size of an individual file or an entire directory tree uniformly.",
+    layer: "Application",
+    code: `interface FileSystemNode {
+  getName(): string;
+  getSizeInBytes(): number;
+}
+
+class FileNode implements FileSystemNode {
+  constructor(
+    private readonly name: string,
+    private readonly sizeInBytes: number,
+  ) {}
+
+  getName() {
+    return this.name;
+  }
+
+  getSizeInBytes() {
+    return this.sizeInBytes;
+  }
+}
+
+class FolderNode implements FileSystemNode {
+  private readonly children: FileSystemNode[] = [];
+
+  constructor(private readonly name: string) {}
+
+  getName() {
+    return this.name;
+  }
+
+  add(child: FileSystemNode) {
+    this.children.push(child);
+  }
+
+  getSizeInBytes() {
+    return this.children.reduce(
+      (total, child) => total + child.getSizeInBytes(),
+      0,
+    );
+  }
+}
+
+const invoices = new FolderNode("invoices");
+invoices.add(new FileNode("january.pdf", 120_000));
+invoices.add(new FileNode("february.pdf", 140_000));
+
+const archive = new FolderNode("archive");
+archive.add(invoices);
+archive.add(new FileNode("readme.txt", 2_000));
+
+console.log(archive.getSizeInBytes());`,
+  },
+  {
+    slug: "decorator-typescript",
+    patternSlug: "decorator",
+    coreLanguageSlug: "typescript",
+    title: "Decorator in TypeScript",
+    summary:
+      "Adds logging and retry behavior to a notification sender by composing wrappers that preserve the same sending interface.",
+    layer: "Application",
+    code: `interface NotificationSender {
+  send(recipient: string, message: string): Promise<void>;
+}
+
+class EmailSender implements NotificationSender {
+  async send(recipient: string, message: string) {
+    console.log(\`Sending email to \${recipient}: \${message}\`);
+  }
+}
+
+abstract class NotificationSenderDecorator
+  implements NotificationSender
+{
+  constructor(
+    protected readonly sender: NotificationSender,
+  ) {}
+
+  send(recipient: string, message: string) {
+    return this.sender.send(recipient, message);
+  }
+}
+
+class LoggingSender extends NotificationSenderDecorator {
+  async send(recipient: string, message: string) {
+    console.log(\`Starting notification for \${recipient}\`);
+
+    await super.send(recipient, message);
+
+    console.log(\`Completed notification for \${recipient}\`);
+  }
+}
+
+class RetryingSender extends NotificationSenderDecorator {
+  async send(recipient: string, message: string) {
+    try {
+      await super.send(recipient, message);
+    } catch (error) {
+      console.warn("First attempt failed; retrying once.");
+      await super.send(recipient, message);
+    }
+  }
+}
+
+const sender = new LoggingSender(
+  new RetryingSender(new EmailSender()),
+);
+
+void sender.send("team@example.com", "Deployment completed.");`,
+  },
+  {
+    slug: "facade-typescript",
+    patternSlug: "facade",
+    coreLanguageSlug: "typescript",
+    title: "Facade in TypeScript",
+    summary:
+      "Provides one checkout operation that coordinates inventory, payment, and shipment subsystems without exposing their individual workflows to callers.",
+    layer: "Application",
+    code: `type OrderRequest = {
+  orderId: string;
+  sku: string;
+  quantity: number;
+  paymentToken: string;
+};
+
+class InventoryService {
+  reserve(sku: string, quantity: number) {
+    console.log(\`Reserved \${quantity} of \${sku}\`);
+  }
+}
+
+class PaymentService {
+  charge(paymentToken: string) {
+    console.log(\`Charged payment token \${paymentToken}\`);
+  }
+}
+
+class ShipmentService {
+  createShipment(orderId: string) {
+    console.log(\`Created shipment for \${orderId}\`);
+  }
+}
+
+class CheckoutFacade {
+  constructor(
+    private readonly inventory: InventoryService,
+    private readonly payments: PaymentService,
+    private readonly shipments: ShipmentService,
+  ) {}
+
+  placeOrder(request: OrderRequest) {
+    this.inventory.reserve(request.sku, request.quantity);
+    this.payments.charge(request.paymentToken);
+    this.shipments.createShipment(request.orderId);
+  }
+}
+
+const checkout = new CheckoutFacade(
+  new InventoryService(),
+  new PaymentService(),
+  new ShipmentService(),
+);
+
+checkout.placeOrder({
+  orderId: "order-123",
+  sku: "keyboard",
+  quantity: 1,
+  paymentToken: "token_abc",
+});`,
+  },
+  {
     slug: "factory-method-typescript",
     patternSlug: "factory-method",
     coreLanguageSlug: "typescript",
@@ -207,6 +461,81 @@ void creator.notify(
 );`,
   },
   {
+    slug: "flyweight-typescript",
+    patternSlug: "flyweight",
+    coreLanguageSlug: "typescript",
+    title: "Flyweight in TypeScript",
+    summary:
+      "Reuses shared text-style objects across many document characters while each character retains only its unique position and content.",
+    layer: "Application",
+    code: `type TextStyleKey = {
+  fontFamily: string;
+  fontSize: number;
+  color: string;
+};
+
+class TextStyle {
+  constructor(
+    readonly fontFamily: string,
+    readonly fontSize: number,
+    readonly color: string,
+  ) {}
+
+  render(character: string, position: number) {
+    console.log(
+      \`Rendering "\${character}" at \${position} with \${this.fontFamily} \${this.fontSize}px \${this.color}\`,
+    );
+  }
+}
+
+class TextStyleFactory {
+  private readonly styles = new Map<string, TextStyle>();
+
+  getStyle(key: TextStyleKey): TextStyle {
+    const cacheKey = \`\${key.fontFamily}:\${key.fontSize}:\${key.color}\`;
+    const existing = this.styles.get(cacheKey);
+
+    if (existing) {
+      return existing;
+    }
+
+    const style = new TextStyle(
+      key.fontFamily,
+      key.fontSize,
+      key.color,
+    );
+
+    this.styles.set(cacheKey, style);
+    return style;
+  }
+}
+
+class DocumentCharacter {
+  constructor(
+    private readonly value: string,
+    private readonly position: number,
+    private readonly style: TextStyle,
+  ) {}
+
+  render() {
+    this.style.render(this.value, this.position);
+  }
+}
+
+const styles = new TextStyleFactory();
+const headingStyle = styles.getStyle({
+  fontFamily: "Inter",
+  fontSize: 24,
+  color: "#ffffff",
+});
+
+const firstCharacter = new DocumentCharacter("H", 0, headingStyle);
+const secondCharacter = new DocumentCharacter("i", 1, headingStyle);
+
+firstCharacter.render();
+secondCharacter.render();`,
+  },
+  {
     slug: "prototype-typescript",
     patternSlug: "prototype",
     coreLanguageSlug: "typescript",
@@ -254,6 +583,62 @@ const baseTemplate = new DeploymentTemplate(
 );
 
 const productionTemplate = baseTemplate.withEnvironment("production");`,
+  },
+  {
+    slug: "proxy-typescript",
+    patternSlug: "proxy",
+    coreLanguageSlug: "typescript",
+    title: "Proxy in TypeScript",
+    summary:
+      "Wraps a remote product catalog with a caching proxy that preserves the catalog interface while controlling and optimizing access to product data.",
+    layer: "Application",
+    code: `type Product = {
+  id: string;
+  name: string;
+  priceInCents: number;
+};
+
+interface ProductCatalog {
+  getProduct(productId: string): Promise<Product>;
+}
+
+class RemoteProductCatalog implements ProductCatalog {
+  async getProduct(productId: string): Promise<Product> {
+    console.log(\`Loading \${productId} from the remote catalog\`);
+
+    return {
+      id: productId,
+      name: "Mechanical Keyboard",
+      priceInCents: 12_999,
+    };
+  }
+}
+
+class CachedProductCatalogProxy implements ProductCatalog {
+  private readonly cache = new Map<string, Product>();
+
+  constructor(private readonly catalog: ProductCatalog) {}
+
+  async getProduct(productId: string): Promise<Product> {
+    const cached = this.cache.get(productId);
+
+    if (cached) {
+      return cached;
+    }
+
+    const product = await this.catalog.getProduct(productId);
+    this.cache.set(productId, product);
+
+    return product;
+  }
+}
+
+const catalog: ProductCatalog = new CachedProductCatalogProxy(
+  new RemoteProductCatalog(),
+);
+
+void catalog.getProduct("keyboard-1");
+void catalog.getProduct("keyboard-1");`,
   },
   {
     slug: "singleton-typescript",
