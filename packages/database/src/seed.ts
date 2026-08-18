@@ -346,6 +346,27 @@ async function main() {
     },
   });
 
+  const flyweight = await prisma.pattern.upsert({
+    where: { slug: "flyweight" },
+    update: {
+      name: "Flyweight",
+      summary:
+        "Shares common intrinsic state across many objects while externalizing context-specific state to reduce memory use.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "flyweight",
+      name: "Flyweight",
+      summary:
+        "Shares common intrinsic state across many objects while externalizing context-specific state to reduce memory use.",
+      category: "Structural",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
