@@ -598,6 +598,27 @@ async function main() {
     },
   });
 
+  const visitor = await prisma.pattern.upsert({
+    where: { slug: "visitor" },
+    update: {
+      name: "Visitor",
+      summary:
+        "Separates operations from an object structure so new behavior can be added through visitors without changing the element classes.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "visitor",
+      name: "Visitor",
+      summary:
+        "Separates operations from an object structure so new behavior can be added through visitors without changing the element classes.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
