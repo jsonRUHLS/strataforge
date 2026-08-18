@@ -20,6 +20,12 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
   return (
     <main className="mx-auto w-full max-w-5xl px-6 py-12">
       <header className="border-b border-white/10 pb-8">
+        <Link
+          className="inline-flex text-sm font-medium text-cyan-300 transition mb-2 hover:text-cyan-200 hover:underline"
+          href="/scenarios"
+        >
+          ← Back to scenarios
+        </Link>
         <div className="mb-4 flex items-center gap-3">
           <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-slate-200">
             Scenario
@@ -47,9 +53,7 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
       </section>
 
       <section className="border-t border-white/10 py-8">
-        <h2 className="text-2xl font-semibold text-white">
-          Related patterns
-        </h2>
+        <h2 className="text-2xl font-semibold text-white">Related patterns</h2>
 
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {scenario.patternLinks.map(({ pattern }) => (
@@ -69,9 +73,7 @@ export default async function ScenarioPage({ params }: ScenarioPageProps) {
       </section>
 
       <section className="border-t border-white/10 py-8">
-        <h2 className="text-2xl font-semibold text-white">
-          Implementations
-        </h2>
+        <h2 className="text-2xl font-semibold text-white">Implementations</h2>
 
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {scenario.patternLinks.flatMap(({ pattern }) =>

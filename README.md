@@ -16,6 +16,7 @@ StrataForge is under active development.
 - Compare patterns and approaches across languages, frameworks, and platforms.
 - Run the Next.js workspace locally with pnpm.
 - Validate changes through GitHub Actions lint and production-build checks.
+- Database-backed scenario browsing at `/scenarios`, with linked scenario detail pages and PostgreSQL catalog provenance.
 - Database-backed scenario detail pages, starting with `/scenarios/third-party-task-api`, linked from the Adapter catalog record.
 
 ### Planned

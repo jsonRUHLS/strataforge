@@ -18,9 +18,31 @@ The Adapter pattern is connected to a PostgreSQL catalog record.
 
 When the catalog database is available, the Adapter pattern page includes catalog-derived metadata, implementation variants, and linked catalog scenarios. The authored content model remains the primary page experience, while the catalog adds relational data and explicit `Catalog DB` provenance.
 
+### Scenario browsing
+
+StrataForge supports database-backed browsing of catalog scenarios.
+
+The scenario index is available at:
+
+```text
+/scenarios
+```
+
+It loads scenario cards from PostgreSQL catalog data. Each card displays the scenario name, summary, number of related patterns, number of associated technologies, and a `Catalog DB` provenance tag.
+
+The scenario index distinguishes between these catalog states:
+
+- Catalog available with scenarios: displays scenario cards.
+- Catalog available with no scenarios: displays an empty-catalog message.
+- Catalog unavailable or `DATABASE_URL` not configured: displays a catalog-unavailable message without exposing a database initialization error.
+
 ### Scenario detail pages
 
-StrataForge supports database-backed detail pages for catalog scenarios.
+Each scenario card links to a database-backed detail route:
+
+```text
+/scenarios/[slug]
+```
 
 The first seeded scenario is available at:
 
@@ -28,21 +50,37 @@ The first seeded scenario is available at:
 /scenarios/third-party-task-api
 ```
 
-The scenario detail page displays:
+A scenario detail page displays:
 
-- Scenario name, summary, and problem statement
-- Related catalog patterns
-- Available pattern implementation variants and core languages
-- Associated technologies
-- A `Catalog DB` provenance badge
+- Scenario name, summary, and problem statement.
+- Related catalog patterns.
+- Available pattern implementation variants and core languages.
+- Associated technologies.
+- A `Catalog DB` provenance badge.
+- A **Back to scenarios** link that returns to `/scenarios`.
 
-The route is server-rendered from PostgreSQL catalog data. Unknown scenario slugs return an intentional 404 page. If `DATABASE_URL` is missing or PostgreSQL is unavailable, the route follows the same not-found path rather than surfacing a database initialization error.
+Unknown scenario slugs return an intentional scenario-specific 404 page. If `DATABASE_URL` is missing or PostgreSQL is unavailable, the detail route follows the same not-found path rather than surfacing a database initialization error.
 
-### Scenario discovery from patterns
+### Scenario navigation
 
-Catalog scenarios are discoverable from the catalog-enriched Adapter pattern page.
+Scenarios are available through the global application navigation:
 
-The current navigation path is:
+```text
+Global navigation
+→ Scenarios
+→ /scenarios
+→ /scenarios/[slug]
+```
+
+Scenario details link back to the scenario index:
+
+```text
+/scenarios/[slug]
+→ Back to scenarios
+→ /scenarios
+```
+
+Catalog scenarios also remain discoverable in context from their related pattern pages:
 
 ```text
 /patterns/adapter
@@ -50,7 +88,7 @@ The current navigation path is:
 → /scenarios/third-party-task-api
 ```
 
-Scenario links are rendered only when a catalog pattern has linked scenarios. The application does not yet provide a global `/scenarios` index or a top-level Scenarios navigation item.
+The Adapter pattern page renders linked catalog scenarios only when the database relationship exists.
 
 ### Monorepo development workflow
 
