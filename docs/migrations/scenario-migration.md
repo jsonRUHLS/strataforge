@@ -82,6 +82,7 @@ Run seed again
 | Factory Method | 3 | 3 | Complete |
 | Flyweight | 3 | 3 | Complete |
 | Interpreter | 3 | 3 | Complete |
+| Iterator | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -185,6 +186,12 @@ Run seed again
 - `interpreter-boolean-rule-interpreter`
 - `interpreter-command-interpreter`
 
+### Iterator
+
+- `iterator-playlist-iterator`
+- `iterator-pagination-iterator`
+- `iterator-tree-traversal-iterator`
+
 ## Validation
 
 Run:
@@ -228,6 +235,7 @@ Facade
 Factory Method
 Flyweight
 Interpreter
+Iterator
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.
