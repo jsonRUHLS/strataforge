@@ -70,9 +70,10 @@ Run seed again
 
 | Pattern | Authored scenarios | Catalog scenarios | Status |
 |---|---:|---:|---|
-| Adapter | 3 | 3 | Complete |
 | Abstract Factory | 6 | 6 | Complete |
+| Adapter | 3 | 3 | Complete |
 | Bridge | 6 | 6 | Complete |
+| Builder | 7 | 7 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -100,6 +101,16 @@ Run seed again
 - `bridge-printer-driver-layer`
 - `bridge-remote-control-bridge`
 - `bridge-shape-renderer-bridge`
+
+### Builder
+
+- `builder-api-request-construction`
+- `builder-report-generation`
+- `builder-ui-form-assembly`
+- `builder-configuration-assembly`
+- `builder-document-composition`
+- `builder-character-creation`
+- `builder-pizza-order-construction`
 
 ## Validation
 
@@ -132,9 +143,10 @@ Select the next pattern from `docs/migrations/scenario-inventory.json`, seed its
 Completed pattern batches:
 
 ```text
-Adapter
 Abstract Factory
+Adapter
 Bridge
+Builder
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.
