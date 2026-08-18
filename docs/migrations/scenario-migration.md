@@ -86,6 +86,7 @@ Run seed again
 | Mediator | 3 | 3 | Complete |
 | Memento | 3 | 3 | Complete |
 | Observer | 3 | 3 | Complete |
+| Prototype | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -213,6 +214,12 @@ Run seed again
 - `observer-order-status-notifications`
 - `observer-news-publisher`
 
+### Prototype
+
+- `prototype-document-template-clone`
+- `prototype-game-character-clone`
+- `prototype-product-config-clone`
+
 ## Validation
 
 Run:
@@ -260,6 +267,7 @@ Iterator
 Mediator
 Memento
 Observer
+Prototype
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.
