@@ -83,6 +83,7 @@ Run seed again
 | Flyweight | 3 | 3 | Complete |
 | Interpreter | 3 | 3 | Complete |
 | Iterator | 3 | 3 | Complete |
+| Mediator | 3 | 3 | Complete |
 | Remaining patterns | See inventory | 0 | Not started |
 
 ## Migrated scenarios
@@ -192,6 +193,12 @@ Run seed again
 - `iterator-pagination-iterator`
 - `iterator-tree-traversal-iterator`
 
+### Mediator
+
+- `mediator-chat-room-mediator`
+- `mediator-air-traffic-mediator`
+- `mediator-ui-mediator`
+
 ## Validation
 
 Run:
@@ -236,6 +243,7 @@ Factory Method
 Flyweight
 Interpreter
 Iterator
+Mediator
 ```
 
 Keep each pattern or small pattern-family batch in a separate pull request.

@@ -409,6 +409,27 @@ async function main() {
     },
   });
 
+  const mediator = await prisma.pattern.upsert({
+    where: { slug: "mediator" },
+    update: {
+      name: "Mediator",
+      summary:
+        "Centralizes communication and coordination between related objects so they collaborate through a mediator instead of depending on one another directly.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "mediator",
+      name: "Mediator",
+      summary:
+        "Centralizes communication and coordination between related objects so they collaborate through a mediator instead of depending on one another directly.",
+      category: "Behavioral",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },
