@@ -1121,4 +1121,50 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "memento-text-editor-memento",
+    name: "Text editor memento",
+    summary: "Store text-editor content snapshots so a user can undo changes.",
+    problemStatement:
+      "A text editor must preserve prior document states for undo operations without exposing or coupling history management to the editor's internal content representation.",
+    patternSlugs: ["memento"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "memento",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "memento-game-save-memento",
+    name: "Game save memento",
+    summary: "Store game save points so players can restore progress later.",
+    problemStatement:
+      "A game must capture and restore progress checkpoints without allowing save-management code to depend on or modify the internal state representation of game objects.",
+    patternSlugs: ["memento"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "memento",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "memento-form-state-memento",
+    name: "Form state memento",
+    summary:
+      "Preserve a multi-step form draft so it can be restored after navigation or interruption.",
+    problemStatement:
+      "A form workflow must save and restore a user's in-progress draft without exposing the internal state structure of the form to navigation or recovery components.",
+    patternSlugs: ["memento"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "memento",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
