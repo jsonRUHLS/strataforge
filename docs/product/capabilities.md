@@ -30,6 +30,8 @@ The scenario index is available at:
 
 It loads scenario cards from PostgreSQL catalog data. Each card displays the scenario name, summary, number of related patterns, number of associated technologies, and a `Catalog DB` provenance tag.
 
+Scenario coverage is being migrated incrementally from authored pattern content into the PostgreSQL catalog. The current catalog includes all authored scenarios for the Adapter and Abstract Factory patterns. Migration provenance and coverage are documented in `docs/migrations/scenario-migration.md`.
+
 The scenario index distinguishes between these catalog states:
 
 - Catalog available with scenarios: displays scenario cards.

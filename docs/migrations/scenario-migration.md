@@ -1,0 +1,120 @@
+# Scenario Migration
+
+> Status: In progress
+
+## Purpose
+
+StrataForge is migrating authored scenarios from the pattern-content package into the PostgreSQL catalog.
+
+The catalog is becoming the source of data for:
+
+```text
+/scenarios
+/scenarios/[slug]
+```
+
+Authored pattern content remains in place during the transition. It continues to power the richer pattern pages while the database catalog gains complete scenario coverage.
+
+The governing migration decision is recorded in
+[`ADR-004: Migrate authored scenarios into the catalog`](../decisions/adr-004-authored-scenario-catalog-migration.md).
+
+## Migration approach
+
+Scenario discovery is generated from the content package:
+
+```text
+packages/content
+→ scripts/inventory-scenarios.ts
+→ docs/migrations/scenario-inventory.json
+```
+
+Reviewed catalog records are maintained in a migration manifest:
+
+```text
+packages/database/src/migrations/authored-scenarios.ts
+```
+
+The database seed reads the manifest and upserts:
+
+```text
+Scenario
+→ ScenarioPattern
+→ ScenarioTechnology
+```
+
+## Identity and relationship rules
+
+- Every catalog scenario has a stable, reviewed kebab-case `slug`.
+- A catalog scenario may relate to one or more patterns.
+- Similar wording does not automatically mean two authored entries are the same scenario.
+- Shared scenarios use one catalog record with multiple source references and pattern links.
+- Technology links are added only when the technology exists in the catalog and the relationship is explicit.
+- Missing referenced patterns or technologies cause the seed to fail.
+- Authored scenario text is retained until the migration is complete and the database model can represent all necessary content.
+
+## Seed behavior
+
+The scenario seed uses `upsert` operations keyed by stable slugs and compound relationship keys.
+
+It is required to be idempotent:
+
+```text
+Run seed once
+→ creates or updates catalog records
+
+Run seed again
+→ does not create duplicate scenarios or relationships
+```
+
+## Current coverage
+
+| Pattern | Authored scenarios | Catalog scenarios | Status |
+|---|---:|---:|---|
+| Adapter | 3 | 3 | Complete |
+| Abstract Factory | 6 | 6 | Complete |
+| Remaining patterns | See inventory | 0 | Not started |
+
+## Migrated scenarios
+
+### Adapter
+
+- `adapter-legacy-payment-gateway`
+- `third-party-task-api`
+- `adapter-event-payload-mapper`
+
+### Abstract Factory
+
+- `abstract-factory-ui-theme-kit`
+- `abstract-factory-cloud-provider-kit`
+- `abstract-factory-game-environment-kit`
+- `abstract-factory-document-suite`
+- `abstract-factory-device-os-kit`
+- `abstract-factory-analytics-stack-kit`
+
+## Validation
+
+Run:
+
+```bash
+pnpm inventory:scenarios
+pnpm --filter @atlas-patterns/database build
+pnpm --filter @atlas-patterns/database seed
+pnpm --filter @atlas-patterns/database seed
+pnpm lint
+pnpm build
+```
+
+Verify in the application:
+
+```text
+/scenarios
+/scenarios/third-party-task-api
+/scenarios/adapter-legacy-payment-gateway
+/scenarios/adapter-event-payload-mapper
+/scenarios/abstract-factory-ui-theme-kit
+/scenarios/not-a-real-scenario
+```
+
+## Next batch
+
+Seed the next catalog pattern and migrate only the authored scenarios associated with that pattern. Keep each pattern family or small batch in a separate pull request.

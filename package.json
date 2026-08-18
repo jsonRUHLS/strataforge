@@ -5,6 +5,7 @@
   "packageManager": "pnpm@10.0.0",
   "scripts": {
     "dev": "pnpm --filter pattern-atlas-web dev",
+    "inventory:scenarios": "tsx scripts/inventory-scenarios.ts",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "type-check": "pnpm -r type-check",

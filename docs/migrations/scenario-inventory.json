@@ -1,0 +1,770 @@
+[
+  {
+    "patternSlug": "abstract-factory",
+    "patternName": "Abstract Factory",
+    "scenarioIndex": 0,
+    "scenarioTitle": "UI theme kit",
+    "scenarioText": "An abstract factory creates matching UI controls such as buttons, inputs, and dialogs for a light or dark theme.",
+    "normalizedSlugCandidate": "abstract-factory-ui-theme-kit"
+  },
+  {
+    "patternSlug": "abstract-factory",
+    "patternName": "Abstract Factory",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Cloud provider kit",
+    "scenarioText": "An abstract factory creates a matching set of storage, queue, and compute clients for a selected cloud provider.",
+    "normalizedSlugCandidate": "abstract-factory-cloud-provider-kit"
+  },
+  {
+    "patternSlug": "abstract-factory",
+    "patternName": "Abstract Factory",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Game environment kit",
+    "scenarioText": "A game factory creates related assets such as terrain, enemies, and effects for a particular environment.",
+    "normalizedSlugCandidate": "abstract-factory-game-environment-kit"
+  },
+  {
+    "patternSlug": "abstract-factory",
+    "patternName": "Abstract Factory",
+    "scenarioIndex": 3,
+    "scenarioTitle": "Document suite",
+    "scenarioText": "A document factory creates matching export handlers for PDF, HTML, and spreadsheet outputs.",
+    "normalizedSlugCandidate": "abstract-factory-document-suite"
+  },
+  {
+    "patternSlug": "abstract-factory",
+    "patternName": "Abstract Factory",
+    "scenarioIndex": 4,
+    "scenarioTitle": "Device OS kit",
+    "scenarioText": "An abstract factory creates a set of UI and system services tailored to a device family or platform.",
+    "normalizedSlugCandidate": "abstract-factory-device-os-kit"
+  },
+  {
+    "patternSlug": "abstract-factory",
+    "patternName": "Abstract Factory",
+    "scenarioIndex": 5,
+    "scenarioTitle": "Analytics stack kit",
+    "scenarioText": "An abstract factory creates a family of data ingestion, transformation, and persistence components for a selected pipeline.",
+    "normalizedSlugCandidate": "abstract-factory-analytics-stack-kit"
+  },
+  {
+    "patternSlug": "adapter",
+    "patternName": "Adapter",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Legacy payment gateway",
+    "scenarioText": "An adapter translates a legacy payment API into the checkout service interface the app expects.",
+    "normalizedSlugCandidate": "adapter-legacy-payment-gateway"
+  },
+  {
+    "patternSlug": "adapter",
+    "patternName": "Adapter",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Third-party task API",
+    "scenarioText": "An adapter normalizes a third-party task payload into the app's internal task model.",
+    "normalizedSlugCandidate": "adapter-third-party-task-api"
+  },
+  {
+    "patternSlug": "adapter",
+    "patternName": "Adapter",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Event payload mapper",
+    "scenarioText": "An adapter converts incoming event payloads into the normalized analytics event shape used by the system.",
+    "normalizedSlugCandidate": "adapter-event-payload-mapper"
+  },
+  {
+    "patternSlug": "bridge",
+    "patternName": "Bridge",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Data source abstraction",
+    "scenarioText": "A reporting layer reads from SQL, API, or file-based sources without changing the reporting logic.",
+    "normalizedSlugCandidate": "bridge-data-source-abstraction"
+  },
+  {
+    "patternSlug": "bridge",
+    "patternName": "Bridge",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Notification delivery",
+    "scenarioText": "A notification system sends the same message via email, SMS, or push without changing the sending flow.",
+    "normalizedSlugCandidate": "bridge-notification-delivery"
+  },
+  {
+    "patternSlug": "bridge",
+    "patternName": "Bridge",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Payment routing",
+    "scenarioText": "A checkout flow routes payments through Stripe, Adyen, or PayPal while keeping the checkout API stable.",
+    "normalizedSlugCandidate": "bridge-payment-routing"
+  },
+  {
+    "patternSlug": "bridge",
+    "patternName": "Bridge",
+    "scenarioIndex": 3,
+    "scenarioTitle": "Printer driver layer",
+    "scenarioText": "A document app prints to local, network, or cloud printers through interchangeable driver implementations.",
+    "normalizedSlugCandidate": "bridge-printer-driver-layer"
+  },
+  {
+    "patternSlug": "bridge",
+    "patternName": "Bridge",
+    "scenarioIndex": 4,
+    "scenarioTitle": "Remote control bridge",
+    "scenarioText": "A remote control triggers TVs, speakers, and streaming devices through interchangeable device implementations.",
+    "normalizedSlugCandidate": "bridge-remote-control-bridge"
+  },
+  {
+    "patternSlug": "bridge",
+    "patternName": "Bridge",
+    "scenarioIndex": 5,
+    "scenarioTitle": "Shape renderer bridge",
+    "scenarioText": "Shapes like circles and rectangles can be drawn on screens, canvases, or SVG backends without changing the shape logic.",
+    "normalizedSlugCandidate": "bridge-shape-renderer-bridge"
+  },
+  {
+    "patternSlug": "builder",
+    "patternName": "Builder",
+    "scenarioIndex": 0,
+    "scenarioTitle": "API request construction",
+    "scenarioText": "A client assembles a complex API request step by step before sending it.",
+    "normalizedSlugCandidate": "builder-api-request-construction"
+  },
+  {
+    "patternSlug": "builder",
+    "patternName": "Builder",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Report generation",
+    "scenarioText": "A reporting tool assembles a report with headers, body sections, charts, and footers.",
+    "normalizedSlugCandidate": "builder-report-generation"
+  },
+  {
+    "patternSlug": "builder",
+    "patternName": "Builder",
+    "scenarioIndex": 2,
+    "scenarioTitle": "UI form assembly",
+    "scenarioText": "A form workflow constructs a multi-step interface with fields, validation, and actions.",
+    "normalizedSlugCandidate": "builder-ui-form-assembly"
+  },
+  {
+    "patternSlug": "builder",
+    "patternName": "Builder",
+    "scenarioIndex": 3,
+    "scenarioTitle": "Configuration assembly",
+    "scenarioText": "An application builds a runtime configuration object from many optional settings.",
+    "normalizedSlugCandidate": "builder-configuration-assembly"
+  },
+  {
+    "patternSlug": "builder",
+    "patternName": "Builder",
+    "scenarioIndex": 4,
+    "scenarioTitle": "Document composition",
+    "scenarioText": "A document pipeline assembles invoices, contracts, or letters from reusable sections.",
+    "normalizedSlugCandidate": "builder-document-composition"
+  },
+  {
+    "patternSlug": "builder",
+    "patternName": "Builder",
+    "scenarioIndex": 5,
+    "scenarioTitle": "Character creation",
+    "scenarioText": "A game builds a character with name, class, and class-dependent stats step by step.",
+    "normalizedSlugCandidate": "builder-character-creation"
+  },
+  {
+    "patternSlug": "builder",
+    "patternName": "Builder",
+    "scenarioIndex": 6,
+    "scenarioTitle": "Pizza order construction",
+    "scenarioText": "A food ordering flow assembles a pizza order with size, crust, toppings, and extras.",
+    "normalizedSlugCandidate": "builder-pizza-order-construction"
+  },
+  {
+    "patternSlug": "chain-of-responsibility",
+    "patternName": "Chain of Responsibility",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Password validation chain",
+    "scenarioText": "A password must pass through several validation rules before it is accepted.",
+    "normalizedSlugCandidate": "chain-of-responsibility-password-validation-chain"
+  },
+  {
+    "patternSlug": "chain-of-responsibility",
+    "patternName": "Chain of Responsibility",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Support ticket chain",
+    "scenarioText": "A support ticket is routed through a chain of handlers until the right support level processes it.",
+    "normalizedSlugCandidate": "chain-of-responsibility-support-ticket-chain"
+  },
+  {
+    "patternSlug": "chain-of-responsibility",
+    "patternName": "Chain of Responsibility",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Approval workflow chain",
+    "scenarioText": "An expense request passes through a chain of approvers based on amount and policy constraints.",
+    "normalizedSlugCandidate": "chain-of-responsibility-approval-workflow-chain"
+  },
+  {
+    "patternSlug": "chain-of-responsibility",
+    "patternName": "Chain of Responsibility",
+    "scenarioIndex": 3,
+    "scenarioTitle": "Request middleware chain",
+    "scenarioText": "A web request flows through logging, auth, rate limiting, and transformation handlers.",
+    "normalizedSlugCandidate": "chain-of-responsibility-request-middleware-chain"
+  },
+  {
+    "patternSlug": "chain-of-responsibility",
+    "patternName": "Chain of Responsibility",
+    "scenarioIndex": 4,
+    "scenarioTitle": "Notification routing chain",
+    "scenarioText": "A message is routed through preference checks, channel selection, and fallback handlers.",
+    "normalizedSlugCandidate": "chain-of-responsibility-notification-routing-chain"
+  },
+  {
+    "patternSlug": "chain-of-responsibility",
+    "patternName": "Chain of Responsibility",
+    "scenarioIndex": 5,
+    "scenarioTitle": "Form command chain",
+    "scenarioText": "A form submission is checked by sanitization, validation, and policy handlers before it is saved.",
+    "normalizedSlugCandidate": "chain-of-responsibility-form-command-chain"
+  },
+  {
+    "patternSlug": "command",
+    "patternName": "Command",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Text editor undo",
+    "scenarioText": "A text editor wraps insert operations in command objects so actions can be executed and later undone from command history.",
+    "normalizedSlugCandidate": "command-text-editor-undo"
+  },
+  {
+    "patternSlug": "command",
+    "patternName": "Command",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Job queue processing",
+    "scenarioText": "A task runner stores commands in a queue so jobs can be submitted now and executed later by a worker.",
+    "normalizedSlugCandidate": "command-job-queue-processing"
+  },
+  {
+    "patternSlug": "command",
+    "patternName": "Command",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Remote control actions",
+    "scenarioText": "A remote control binds buttons to command objects so the invoker can trigger different device actions without knowing device-specific APIs.",
+    "normalizedSlugCandidate": "command-remote-control-actions"
+  },
+  {
+    "patternSlug": "command",
+    "patternName": "Command",
+    "scenarioIndex": 3,
+    "scenarioTitle": "Admin action queue",
+    "scenarioText": "An admin console records actions like exports, notifications, and recalculations as commands that can run later.",
+    "normalizedSlugCandidate": "command-admin-action-queue"
+  },
+  {
+    "patternSlug": "command",
+    "patternName": "Command",
+    "scenarioIndex": 4,
+    "scenarioTitle": "Workflow step command",
+    "scenarioText": "A process engine models each step of a business flow as a command that can be invoked by a coordinator.",
+    "normalizedSlugCandidate": "command-workflow-step-command"
+  },
+  {
+    "patternSlug": "command",
+    "patternName": "Command",
+    "scenarioIndex": 5,
+    "scenarioTitle": "Macro command sequence",
+    "scenarioText": "A productivity tool bundles multiple actions into one reusable macro that can run with a single trigger.",
+    "normalizedSlugCandidate": "command-macro-command-sequence"
+  },
+  {
+    "patternSlug": "composite",
+    "patternName": "Composite",
+    "scenarioIndex": 0,
+    "scenarioTitle": "File system composite",
+    "scenarioText": "A file system treats files and folders through the same interface, allowing nested structures to be processed uniformly.",
+    "normalizedSlugCandidate": "composite-file-system-composite"
+  },
+  {
+    "patternSlug": "composite",
+    "patternName": "Composite",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Menu composite",
+    "scenarioText": "A menu system represents menu items and submenus together so the UI can render or invoke them the same way.",
+    "normalizedSlugCandidate": "composite-menu-composite"
+  },
+  {
+    "patternSlug": "composite",
+    "patternName": "Composite",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Organization chart composite",
+    "scenarioText": "An organization chart uses a common component interface for employees and managers, allowing recursive traversal of the hierarchy.",
+    "normalizedSlugCandidate": "composite-organization-chart-composite"
+  },
+  {
+    "patternSlug": "composite",
+    "patternName": "Composite",
+    "scenarioIndex": 3,
+    "scenarioTitle": "Dashboard widget tree",
+    "scenarioText": "A dashboard groups widgets and widget containers so layout and rendering can recurse through the same structure.",
+    "normalizedSlugCandidate": "composite-dashboard-widget-tree"
+  },
+  {
+    "patternSlug": "composite",
+    "patternName": "Composite",
+    "scenarioIndex": 4,
+    "scenarioTitle": "Permission group hierarchy",
+    "scenarioText": "An access-control system nests roles and permission groups so aggregate permissions can be evaluated recursively.",
+    "normalizedSlugCandidate": "composite-permission-group-hierarchy"
+  },
+  {
+    "patternSlug": "composite",
+    "patternName": "Composite",
+    "scenarioIndex": 5,
+    "scenarioTitle": "Scene graph composite",
+    "scenarioText": "A graphics engine represents shapes and containers in a scene graph so rendering and transforms can recurse through the hierarchy.",
+    "normalizedSlugCandidate": "composite-scene-graph-composite"
+  },
+  {
+    "patternSlug": "decorator",
+    "patternName": "Decorator",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Notification delivery",
+    "scenarioText": "A notification service sends a message, while decorators add logging and retry behavior around the same send contract.",
+    "normalizedSlugCandidate": "decorator-notification-delivery"
+  },
+  {
+    "patternSlug": "decorator",
+    "patternName": "Decorator",
+    "scenarioIndex": 1,
+    "scenarioTitle": "HTTP client",
+    "scenarioText": "A basic HTTP client performs requests, while decorators add caching and metrics without changing the request interface.",
+    "normalizedSlugCandidate": "decorator-http-client"
+  },
+  {
+    "patternSlug": "decorator",
+    "patternName": "Decorator",
+    "scenarioIndex": 2,
+    "scenarioTitle": "File storage",
+    "scenarioText": "A file storage component writes data, while decorators add compression and encryption as optional layers before persistence.",
+    "normalizedSlugCandidate": "decorator-file-storage"
+  },
+  {
+    "patternSlug": "decorator",
+    "patternName": "Decorator",
+    "scenarioIndex": 3,
+    "scenarioTitle": "Text formatting",
+    "scenarioText": "A text component can be wrapped with formatting decorators such as bold, italic, and underline without changing the original component.",
+    "normalizedSlugCandidate": "decorator-text-formatting"
+  },
+  {
+    "patternSlug": "decorator",
+    "patternName": "Decorator",
+    "scenarioIndex": 4,
+    "scenarioTitle": "Coffee customization",
+    "scenarioText": "A coffee order starts with a base drink and gains extra behavior and cost through decorators like milk, mocha, and whip.",
+    "normalizedSlugCandidate": "decorator-coffee-customization"
+  },
+  {
+    "patternSlug": "decorator",
+    "patternName": "Decorator",
+    "scenarioIndex": 5,
+    "scenarioTitle": "Notification channels",
+    "scenarioText": "A base notifier can be wrapped with email, SMS, or Slack decorators so one message is delivered through multiple channels.",
+    "normalizedSlugCandidate": "decorator-notification-channels"
+  },
+  {
+    "patternSlug": "decorator",
+    "patternName": "Decorator",
+    "scenarioIndex": 6,
+    "scenarioTitle": "Logging, metrics, and tracing",
+    "scenarioText": "A service wrapper layers logs, metrics, and tracing around one core operation so cross-cutting concerns stay separate.",
+    "normalizedSlugCandidate": "decorator-logging-metrics-and-tracing"
+  },
+  {
+    "patternSlug": "decorator",
+    "patternName": "Decorator",
+    "scenarioIndex": 7,
+    "scenarioTitle": "UI accessibility enhancement",
+    "scenarioText": "A component can be wrapped with accessibility decorators that add labels, keyboard handling, or hints without changing the base UI.",
+    "normalizedSlugCandidate": "decorator-ui-accessibility-enhancement"
+  },
+  {
+    "patternSlug": "facade",
+    "patternName": "Facade",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Checkout workflow",
+    "scenarioText": "A checkout facade exposes one placeOrder call while coordinating authentication, payment, inventory, and notification subsystems.",
+    "normalizedSlugCandidate": "facade-checkout-workflow"
+  },
+  {
+    "patternSlug": "facade",
+    "patternName": "Facade",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Video conversion pipeline",
+    "scenarioText": "A video conversion facade wraps several media-processing steps behind a single convert method.",
+    "normalizedSlugCandidate": "facade-video-conversion-pipeline"
+  },
+  {
+    "patternSlug": "facade",
+    "patternName": "Facade",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Home theater startup",
+    "scenarioText": "A home theater facade simplifies a multi-device startup sequence into one watchMovie operation.",
+    "normalizedSlugCandidate": "facade-home-theater-startup"
+  },
+  {
+    "patternSlug": "facade",
+    "patternName": "Facade",
+    "scenarioIndex": 3,
+    "scenarioTitle": "Account onboarding",
+    "scenarioText": "An onboarding facade coordinates account creation, profile setup, email verification, and welcome messaging.",
+    "normalizedSlugCandidate": "facade-account-onboarding"
+  },
+  {
+    "patternSlug": "facade",
+    "patternName": "Facade",
+    "scenarioIndex": 4,
+    "scenarioTitle": "Report generation",
+    "scenarioText": "A report facade hides data collection, formatting, rendering, and delivery behind one generateReport method.",
+    "normalizedSlugCandidate": "facade-report-generation"
+  },
+  {
+    "patternSlug": "facade",
+    "patternName": "Facade",
+    "scenarioIndex": 5,
+    "scenarioTitle": "Device setup",
+    "scenarioText": "A device setup facade runs pairing, configuration, and health checks through one setupDevice operation.",
+    "normalizedSlugCandidate": "facade-device-setup"
+  },
+  {
+    "patternSlug": "factory-method",
+    "patternName": "Factory Method",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Document export",
+    "scenarioText": "A reporting workflow uses a factory method to choose the right exporter for PDF, CSV, or other output formats while keeping the export flow consistent.",
+    "normalizedSlugCandidate": "factory-method-document-export"
+  },
+  {
+    "patternSlug": "factory-method",
+    "patternName": "Factory Method",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Notification channel",
+    "scenarioText": "A notification service delegates sender creation to channel-specific creators so email, SMS, and push delivery can vary without changing the notification workflow.",
+    "normalizedSlugCandidate": "factory-method-notification-channel"
+  },
+  {
+    "patternSlug": "factory-method",
+    "patternName": "Factory Method",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Logger transport",
+    "scenarioText": "An application selects console, file, or remote logging transports through specialized factories so environments can change the concrete logger implementation cleanly.",
+    "normalizedSlugCandidate": "factory-method-logger-transport"
+  },
+  {
+    "patternSlug": "flyweight",
+    "patternName": "Flyweight",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Tree rendering flyweight",
+    "scenarioText": "A forest renderer shares tree type data across many individual tree instances to minimize memory usage.",
+    "normalizedSlugCandidate": "flyweight-tree-rendering-flyweight"
+  },
+  {
+    "patternSlug": "flyweight",
+    "patternName": "Flyweight",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Text formatting flyweight",
+    "scenarioText": "A text editor reuses character style objects for many glyphs while storing only position and content-specific state separately.",
+    "normalizedSlugCandidate": "flyweight-text-formatting-flyweight"
+  },
+  {
+    "patternSlug": "flyweight",
+    "patternName": "Flyweight",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Game tile flyweight",
+    "scenarioText": "A tile-based game reuses terrain definitions while each map tile stores only its coordinates and local effects.",
+    "normalizedSlugCandidate": "flyweight-game-tile-flyweight"
+  },
+  {
+    "patternSlug": "interpreter",
+    "patternName": "Interpreter",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Expression interpreter",
+    "scenarioText": "An arithmetic expression is represented as a tree of terminal and non-terminal expressions and then evaluated.",
+    "normalizedSlugCandidate": "interpreter-expression-interpreter"
+  },
+  {
+    "patternSlug": "interpreter",
+    "patternName": "Interpreter",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Boolean rule interpreter",
+    "scenarioText": "A simple rules engine interprets boolean conditions against a context object.",
+    "normalizedSlugCandidate": "interpreter-boolean-rule-interpreter"
+  },
+  {
+    "patternSlug": "interpreter",
+    "patternName": "Interpreter",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Command interpreter",
+    "scenarioText": "A command string is parsed into operations that the interpreter can execute in order.",
+    "normalizedSlugCandidate": "interpreter-command-interpreter"
+  },
+  {
+    "patternSlug": "iterator",
+    "patternName": "Iterator",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Playlist iterator",
+    "scenarioText": "A playlist exposes songs one at a time through a custom iterator.",
+    "normalizedSlugCandidate": "iterator-playlist-iterator"
+  },
+  {
+    "patternSlug": "iterator",
+    "patternName": "Iterator",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Pagination iterator",
+    "scenarioText": "An iterator walks through pages of data without revealing how the pages are stored.",
+    "normalizedSlugCandidate": "iterator-pagination-iterator"
+  },
+  {
+    "patternSlug": "iterator",
+    "patternName": "Iterator",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Tree traversal iterator",
+    "scenarioText": "A tree is traversed in order without exposing the internal node structure.",
+    "normalizedSlugCandidate": "iterator-tree-traversal-iterator"
+  },
+  {
+    "patternSlug": "mediator",
+    "patternName": "Mediator",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Chat room mediator",
+    "scenarioText": "Users send messages through a chat room mediator instead of talking to each other directly.",
+    "normalizedSlugCandidate": "mediator-chat-room-mediator"
+  },
+  {
+    "patternSlug": "mediator",
+    "patternName": "Mediator",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Air traffic mediator",
+    "scenarioText": "Aircraft coordinate landing and takeoff decisions through an air traffic control mediator.",
+    "normalizedSlugCandidate": "mediator-air-traffic-mediator"
+  },
+  {
+    "patternSlug": "mediator",
+    "patternName": "Mediator",
+    "scenarioIndex": 2,
+    "scenarioTitle": "UI mediator",
+    "scenarioText": "Form controls communicate through a mediator that manages enabling, validation, and updates.",
+    "normalizedSlugCandidate": "mediator-ui-mediator"
+  },
+  {
+    "patternSlug": "memento",
+    "patternName": "Memento",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Text editor memento",
+    "scenarioText": "A text editor stores snapshots of its content so the user can undo changes.",
+    "normalizedSlugCandidate": "memento-text-editor-memento"
+  },
+  {
+    "patternSlug": "memento",
+    "patternName": "Memento",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Game save memento",
+    "scenarioText": "A game stores save points so the player can restore progress later.",
+    "normalizedSlugCandidate": "memento-game-save-memento"
+  },
+  {
+    "patternSlug": "memento",
+    "patternName": "Memento",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Form state memento",
+    "scenarioText": "A multi-step form preserves draft state so it can be restored after navigation or interruption.",
+    "normalizedSlugCandidate": "memento-form-state-memento"
+  },
+  {
+    "patternSlug": "observer",
+    "patternName": "Observer",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Stock price alerts",
+    "scenarioText": "A stock subject notifies dashboards and alert services whenever the tracked price changes.",
+    "normalizedSlugCandidate": "observer-stock-price-alerts"
+  },
+  {
+    "patternSlug": "observer",
+    "patternName": "Observer",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Order status notifications",
+    "scenarioText": "An order subject broadcasts status changes so email, warehouse, and analytics observers can react independently.",
+    "normalizedSlugCandidate": "observer-order-status-notifications"
+  },
+  {
+    "patternSlug": "observer",
+    "patternName": "Observer",
+    "scenarioIndex": 2,
+    "scenarioTitle": "News publisher",
+    "scenarioText": "A publisher notifies multiple subscribers when a new article is published so apps and channels update automatically.",
+    "normalizedSlugCandidate": "observer-news-publisher"
+  },
+  {
+    "patternSlug": "prototype",
+    "patternName": "Prototype",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Document template clone",
+    "scenarioText": "An editor clones a preconfigured document template to quickly create new reports with the same layout and styling.",
+    "normalizedSlugCandidate": "prototype-document-template-clone"
+  },
+  {
+    "patternSlug": "prototype",
+    "patternName": "Prototype",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Game character clone",
+    "scenarioText": "A game system clones a base character prototype to produce variant enemies or allies with shared stats and equipment.",
+    "normalizedSlugCandidate": "prototype-game-character-clone"
+  },
+  {
+    "patternSlug": "prototype",
+    "patternName": "Prototype",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Product config clone",
+    "scenarioText": "A commerce system clones a product configuration prototype to generate many similar catalog items with small differences.",
+    "normalizedSlugCandidate": "prototype-product-config-clone"
+  },
+  {
+    "patternSlug": "proxy",
+    "patternName": "Proxy",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Virtual image proxy",
+    "scenarioText": "An image viewer delays loading high-resolution images until they are actually displayed.",
+    "normalizedSlugCandidate": "proxy-virtual-image-proxy"
+  },
+  {
+    "patternSlug": "proxy",
+    "patternName": "Proxy",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Access control proxy",
+    "scenarioText": "A secure resource proxy checks permissions before allowing sensitive operations.",
+    "normalizedSlugCandidate": "proxy-access-control-proxy"
+  },
+  {
+    "patternSlug": "proxy",
+    "patternName": "Proxy",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Remote service proxy",
+    "scenarioText": "A proxy wraps a remote service call so the client can interact with it like a local object.",
+    "normalizedSlugCandidate": "proxy-remote-service-proxy"
+  },
+  {
+    "patternSlug": "singleton",
+    "patternName": "Singleton",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Application config singleton",
+    "scenarioText": "A shared configuration object loads environment settings once and serves them throughout the application.",
+    "normalizedSlugCandidate": "singleton-application-config-singleton"
+  },
+  {
+    "patternSlug": "singleton",
+    "patternName": "Singleton",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Logger singleton",
+    "scenarioText": "A logging service keeps one shared logger instance so every component writes to the same output pipeline.",
+    "normalizedSlugCandidate": "singleton-logger-singleton"
+  },
+  {
+    "patternSlug": "singleton",
+    "patternName": "Singleton",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Cache manager singleton",
+    "scenarioText": "A cache manager keeps one shared in-memory cache so all parts of the app reuse the same stored data.",
+    "normalizedSlugCandidate": "singleton-cache-manager-singleton"
+  },
+  {
+    "patternSlug": "state",
+    "patternName": "State",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Order state",
+    "scenarioText": "An order changes behavior as it moves from pending to processing to shipped.",
+    "normalizedSlugCandidate": "state-order-state"
+  },
+  {
+    "patternSlug": "state",
+    "patternName": "State",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Traffic light state",
+    "scenarioText": "A traffic light changes its behavior based on whether it is red, yellow, or green.",
+    "normalizedSlugCandidate": "state-traffic-light-state"
+  },
+  {
+    "patternSlug": "state",
+    "patternName": "State",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Media player state",
+    "scenarioText": "A media player behaves differently when it is playing, paused, or stopped.",
+    "normalizedSlugCandidate": "state-media-player-state"
+  },
+  {
+    "patternSlug": "strategy",
+    "patternName": "Strategy",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Payment processing",
+    "scenarioText": "A checkout flow delegates payment behavior to a selected strategy so the order flow stays stable while payment methods vary.",
+    "normalizedSlugCandidate": "strategy-payment-processing"
+  },
+  {
+    "patternSlug": "strategy",
+    "patternName": "Strategy",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Shipping cost calculation",
+    "scenarioText": "An order service chooses a shipping algorithm based on delivery type without embedding pricing rules in one large conditional block.",
+    "normalizedSlugCandidate": "strategy-shipping-cost-calculation"
+  },
+  {
+    "patternSlug": "strategy",
+    "patternName": "Strategy",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Notification delivery",
+    "scenarioText": "A notification service picks a delivery channel strategy so the caller does not manage channel-specific branching logic.",
+    "normalizedSlugCandidate": "strategy-notification-delivery"
+  },
+  {
+    "patternSlug": "template-method",
+    "patternName": "Template Method",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Order processing template",
+    "scenarioText": "Order processing follows the same high-level steps, but some validation and fulfillment details vary by order type.",
+    "normalizedSlugCandidate": "template-method-order-processing-template"
+  },
+  {
+    "patternSlug": "template-method",
+    "patternName": "Template Method",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Report generation template",
+    "scenarioText": "Report generation uses the same flow, while each report type customizes data collection and formatting.",
+    "normalizedSlugCandidate": "template-method-report-generation-template"
+  },
+  {
+    "patternSlug": "template-method",
+    "patternName": "Template Method",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Data import template",
+    "scenarioText": "Data import follows a standard pipeline while different file formats customize parsing and validation.",
+    "normalizedSlugCandidate": "template-method-data-import-template"
+  },
+  {
+    "patternSlug": "visitor",
+    "patternName": "Visitor",
+    "scenarioIndex": 0,
+    "scenarioTitle": "Shape visitor",
+    "scenarioText": "Different shapes accept visitors that can render or measure them without changing the shape classes.",
+    "normalizedSlugCandidate": "visitor-shape-visitor"
+  },
+  {
+    "patternSlug": "visitor",
+    "patternName": "Visitor",
+    "scenarioIndex": 1,
+    "scenarioTitle": "Cart visitor",
+    "scenarioText": "Shopping cart items accept visitors that calculate pricing and discounts across product types.",
+    "normalizedSlugCandidate": "visitor-cart-visitor"
+  },
+  {
+    "patternSlug": "visitor",
+    "patternName": "Visitor",
+    "scenarioIndex": 2,
+    "scenarioTitle": "Document visitor",
+    "scenarioText": "Document nodes accept visitors that export or inspect them without coupling those behaviors to the nodes themselves.",
+    "normalizedSlugCandidate": "visitor-document-visitor"
+  }
+]
