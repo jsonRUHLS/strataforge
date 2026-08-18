@@ -472,6 +472,27 @@ async function main() {
     },
   });
 
+  const prototype = await prisma.pattern.upsert({
+    where: { slug: "prototype" },
+    update: {
+      name: "Prototype",
+      summary:
+        "Creates new objects by cloning existing prototype instances instead of constructing them from scratch or depending on concrete classes.",
+      category: "Creational",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+    create: {
+      slug: "prototype",
+      name: "Prototype",
+      summary:
+        "Creates new objects by cloning existing prototype instances instead of constructing them from scratch or depending on concrete classes.",
+      category: "Creational",
+      layer: "Application",
+      status: "ACTIVE",
+    },
+  });
+
   await Promise.all([
     prisma.technology.upsert({
       where: { slug: "apollo-client" },

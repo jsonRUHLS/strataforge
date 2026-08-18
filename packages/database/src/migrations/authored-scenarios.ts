@@ -1215,4 +1215,52 @@ export const authoredScenarioMigrations: AuthoredScenarioMigration[] = [
       },
     ],
   },
+  {
+    slug: "prototype-document-template-clone",
+    name: "Document template clone",
+    summary:
+      "Clone a preconfigured document template to create new reports with shared layout and styling.",
+    problemStatement:
+      "An editor must create many similarly configured reports without repeatedly rebuilding complex layout and styling settings or coupling clients to a concrete document implementation.",
+    patternSlugs: ["prototype"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "prototype",
+        scenarioIndex: 0,
+      },
+    ],
+  },
+  {
+    slug: "prototype-game-character-clone",
+    name: "Game character clone",
+    summary:
+      "Clone a base character prototype to create variant enemies or allies with shared statistics and equipment.",
+    problemStatement:
+      "A game must create many related character variants efficiently without repeating complex initialization or requiring spawning code to know each concrete character class.",
+    patternSlugs: ["prototype"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "prototype",
+        scenarioIndex: 1,
+      },
+    ],
+  },
+  {
+    slug: "prototype-product-config-clone",
+    name: "Product config clone",
+    summary:
+      "Clone a product-configuration prototype to generate similar catalog items with small differences.",
+    problemStatement:
+      "A commerce system must create many similarly configured catalog items without reconstructing shared configuration from scratch or coupling item-creation workflows to concrete product types.",
+    patternSlugs: ["prototype"],
+    technologySlugs: [],
+    sources: [
+      {
+        patternSlug: "prototype",
+        scenarioIndex: 2,
+      },
+    ],
+  },
 ];
