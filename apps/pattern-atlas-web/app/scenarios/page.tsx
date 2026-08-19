@@ -150,6 +150,12 @@ export default async function ScenariosPage({
 
   const scenarios = await listOptionalScenarios(filters);
 
+  const hasAppliedFilters =
+    Boolean(filters.query) ||
+    Boolean(filters.patternSlug) ||
+    Boolean(filters.category) ||
+    Boolean(filters.layer);
+
   const activeFilters = [
     filters.query
       ? {
@@ -186,6 +192,24 @@ export default async function ScenariosPage({
       href: string;
     } => filter !== null,
   );
+
+  if (scenarios !== null && scenarios.length === 0 && !hasAppliedFilters) {
+    return (
+      <section className="page">
+        <PageHeader
+          eyebrow="Catalog"
+          title="Scenarios"
+          description="Browse real-world architecture and integration problems, then explore the patterns that help solve them."
+        />
+
+        <SectionCard title="No catalog scenarios yet">
+          <p>
+            The catalog is connected, but it does not contain any scenarios yet.
+          </p>
+        </SectionCard>
+      </section>
+    );
+  }
 
   return (
     <section className="page">
@@ -368,7 +392,7 @@ export default async function ScenariosPage({
               <p>Try changing your search or clearing one or more filters.</p>
 
               <Link
-                className="mt-4 inline-flex text-sm font-medium text-cyan-300 transition hover:text-cyan-200 hover:underline"
+                className="button-link button-link--secondary"
                 href="/scenarios"
               >
                 Clear all filters
