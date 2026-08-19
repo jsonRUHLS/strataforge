@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 };
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/patterns", label: "Patterns" },
-  { href: "/scenarios", label: "Scenarios" },
-  { href: "/compare", label: "Compare" },
+  { href: "/", label: "Forge" },
+  { href: "/patterns", label: "Pattern Atlas" },
+  { href: "/scenarios", label: "Scenario Field Guide" },
+  { href: "/compare", label: "Pattern Workbench" },
   { href: "/settings", label: "Settings" },
 ];
 
