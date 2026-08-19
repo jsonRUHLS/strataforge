@@ -38,6 +38,18 @@ The scenario index distinguishes between these catalog states:
 - Catalog available with no scenarios: displays an empty-catalog message.
 - Catalog unavailable or `DATABASE_URL` not configured: displays a catalog-unavailable message without exposing a database initialization error.
 
+### Scenario discovery
+
+The Scenarios catalog is scenario-first: each result presents a real-world architecture or integration problem, with related design patterns shown as supporting metadata.
+
+Users can:
+
+- Search scenario titles, summaries, problem statements, and related pattern names.
+- Filter scenarios by Pattern, pattern category, and architecture layer.
+- Sort results by title, most recently added, or most recently updated.
+- Use shareable URL query parameters to preserve searches, filters, and sorting.
+- Open a scenario to explore its problem statement, associated patterns, implementations, and technologies.
+
 ### Scenario detail pages
 
 Each scenario card links to a database-backed detail route:
